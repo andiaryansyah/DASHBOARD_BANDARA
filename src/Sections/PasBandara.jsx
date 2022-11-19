@@ -19,13 +19,13 @@ const PasBandara = () => {
         name: "Email",
         selector: (row) => <div className="text-center">{row.email}</div>,
         sortable: true,
-        width: "250px",
+        width: "200px",
       },
       {
         name: "Surat Permohonan",
         selector: (row) => row.surat_permohonan,
         sortable: true,
-        width: "180px",
+        width: "100px",
         
       },
       {
@@ -38,13 +38,13 @@ const PasBandara = () => {
         name: "Surat Pernyataan dari atasan",
         selector: (row) => row.pernyataan_atasan,
         sortable: true,
-        width: "180px",
+        width: "100px",
       },
       {
         name: "Riwayat Hidup",
         selector: (row) => row.riwayat_hidup,
         sortable: true,
-        width: "150px",
+        width: "100px",
       },
       {
         name: "Identitas",
@@ -62,13 +62,13 @@ const PasBandara = () => {
         name: "SK Pegawai Kontrak",
         selector: (row) => row.sk_pegawai,
         sortable: true,
-        width: "180px",
+        width: "100px",
       },
       {
         name: "Surat Bebas Narkoba",
         selector: (row) => row.bebas_narkoba,
         sortable: true,
-        width: "180px",
+        width: "100px",
       },
       {
         name: "Action",
@@ -116,20 +116,17 @@ const PasBandara = () => {
       return newData.email.toLowerCase().match(search.toLowerCase());
     })
     setFilteredData(result)
-    console.log(data, "TESSSSSSSSSSS");
 // eslint-disable-next-line
   }, [data, search])
 
   return (
     <div className="w-full h-full">
-      <div className="">
         <Table 
           columns={columns}
           data={filteredData}
           searchValue={search}
           handleSearch={(e) => setSearch(e.target.value)}
         />
-      </div>
     </div>
   );
 };

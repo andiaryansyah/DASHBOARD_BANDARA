@@ -56,7 +56,7 @@ const Sidebar = ({handleClick, activeMenu}) => {
             }`}
             >
             <div>{menu.icon}</div>
-            <div className={`${!open && "hidden"} origin-left duration-200 text-xl`}>
+            <div className={`${!open && "hidden"} origin-left duration-200 text-lg`}>
               {menu.title}
             </div>
           </li>
