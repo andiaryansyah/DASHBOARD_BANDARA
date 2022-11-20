@@ -38,7 +38,7 @@ const Register = () => {
                   </div>
                   <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Buat Akun</button>
                   <p class="text-sm font-light text-gray-500 ">
-                      Sudah punya akun ? <a href="/login" class="font-medium text-primary-600 hover:underline ">Masuk disini</a>
+                      Sudah punya akun ? <a href="/" class="font-medium text-primary-600 hover:underline ">Masuk disini</a>
                   </p>
               </form>
           </div>

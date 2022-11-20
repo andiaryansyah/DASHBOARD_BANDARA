@@ -15,7 +15,7 @@ const Login = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
               Masuk ke Akun Anda
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form className="space-y-4 md:space-y-6" action="/dashboard">
               <div>
                 <label
                   for="email"
