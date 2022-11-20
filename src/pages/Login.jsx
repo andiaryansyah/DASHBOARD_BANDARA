@@ -78,6 +78,7 @@ const Login = () => {
               >
                 Masuk
               </button>
+            </form>
               <p className="text-sm font-light text-gray-500">
                 Belum punya Akun?{" "}
                 <a
@@ -87,7 +88,6 @@ const Login = () => {
                   Daftar
                 </a>
               </p>
-            </form>
           </div>
         </div>
       </div>
