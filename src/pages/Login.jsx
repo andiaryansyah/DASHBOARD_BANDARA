@@ -1,12 +1,20 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Login = () => {
+
+const navigate = useNavigate()
+
+const handleClick = () => {
+    navigate("/dashboard")
+}
+
   return (
-    <section className="bg-gray-50">
+    <section className="bg-[#182A68]">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <img src={logo} alt="logo" className="mb-2 w-16 h-16"/>
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl mb-4">
+        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-50 md:text-3xl mb-4">
           BADAN LAYANAN UMUM
           <br /> UPBU SULTAN BANTILAN
         </h1>
@@ -15,7 +23,7 @@ const Login = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
               Masuk ke Akun Anda
             </h1>
-            <form className="space-y-4 md:space-y-6" action="/dashboard">
+            <form className="space-y-4 md:space-y-6" onSubmit={handleClick}>
               <div>
                 <label
                   for="email"
@@ -65,12 +73,12 @@ const Login = () => {
                     </label>
                   </div>
                 </div>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="text-sm font-medium text-primary-600 hover:underline"
                 >
                   Lupa password?
-                </a>
+                </Link>
               </div>
               <button
                 type="submit"
@@ -81,12 +89,12 @@ const Login = () => {
             </form>
               <p className="text-sm font-light text-gray-500">
                 Belum punya Akun?{" "}
-                <a
-                  href="/register"
+                <Link
+                  to="/register"
                   className="font-medium text-primary-600 hover:underline"
                 >
                   Daftar
-                </a>
+                </Link>
               </p>
           </div>
         </div>
