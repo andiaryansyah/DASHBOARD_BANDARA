@@ -47,6 +47,8 @@ const Table = ({columns, data, searchValue, handleSearch}) => {
         columns={columns}
         data={data}
         pagination
+        paginationPerPage={5}
+        paginationRowsPerPageOptions={[5,10, 20, 30, 50]}
         onSelectedRowsChange={updateState}
         customStyles={customStyles}
         highlightOnHover

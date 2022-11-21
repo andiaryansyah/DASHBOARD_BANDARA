@@ -10,70 +10,81 @@ const PasBandara = () => {
   const columns = useMemo(
     () => [
       {
-        name: "No",
-        selector: (row) => <div className="text-center">{row.no}</div>,
+        name: <div className="text-xxs">No</div>,
+        cell:(row) => <div className="text-xxs">{row.no}</div>,
+        selector: (row) => <div>{row.no}</div>,
         sortable: true,
-        width: "70px",
+        width: "47px",
+
       },
       {
-        name: "Email",
-        selector: (row) => <div className="text-center">{row.email}</div>,
+        name: <div className="text-xxs">Email</div>,
+        cell:(row) => <div className="text-xxs">{row.email}</div>,
+        selector: (row) => <div>{row.email}</div>,
         sortable: true,
-        width: "200px",
+        width: "170px",
       },
       {
-        name: "Surat Permohonan",
+        name:<div className="text-xxs">Surat Permohonan</div>,
+        cell:(row) => <div className="text-xxs">{row.surat_permohonan}</div>,
         selector: (row) => row.surat_permohonan,
         sortable: true,
-        width: "100px",
+        width: "95px",
         
       },
       {
-        name: "Pas Foto",
+        name: <div className="text-xxs">Pas Foto</div>,
+        cell:(row) => <div className="text-xxs">{row.foto}</div>,
         selector: (row) => row.foto,
         sortable: true,
-        width: "100px",
+        width: "60px",
       },
       {
-        name: "Surat Pernyataan dari atasan",
+        name: <div className="text-xxs">Surat Pernyataan dari atasan</div>,
+        cell:(row) => <div className="text-xxs">{row.pernyataan_atasan}</div>,
         selector: (row) => row.pernyataan_atasan,
-        sortable: true,
-        width: "100px",
-      },
-      {
-        name: "Riwayat Hidup",
-        selector: (row) => row.riwayat_hidup,
-        sortable: true,
-        width: "100px",
-      },
-      {
-        name: "Identitas",
-        selector: (row) => row.identitas,
-        sortable: true,
-        width: "100px",
-      },
-      {
-        name: "SKCK",
-        selector: (row) => row.skck,
         sortable: true,
         width: "90px",
       },
       {
-        name: "SK Pegawai Kontrak",
+        name: <div className="text-xxs">Riwayat Hidup</div>,
+        cell:(row) => <div className="text-xxs">{row.riwayat_hidup}</div>,
+        selector: (row) => row.riwayat_hidup,
+        sortable: true,
+        width: "70px",
+      },
+      {
+        name: <div className="text-xxs">Identitas</div>,
+        cell:(row) => <div className="text-xxs">{row.identitas}</div>,
+        selector: (row) => row.identitas,
+        sortable: true,
+        width: "80px",
+      },
+      {
+        name: <div className="text-xxs">SKCK</div>,
+        cell:(row) => <div className="text-xxs">{row.skck}</div>,
+        selector: (row) => row.skck,
+        sortable: true,
+        width: "60px",
+      },
+      {
+        name: <div className="text-xxs">SK Pegawai Kontrak</div>,
+        cell:(row) => <div className="text-xxs">{row.sk_pegawai}</div>,
         selector: (row) => row.sk_pegawai,
         sortable: true,
-        width: "100px",
+        width: "80px",
       },
       {
-        name: "Surat Bebas Narkoba",
+        name: <div className="text-xxs">Surat Bebas Narkoba</div>,
+        cell:(row) => <div className="text-xxs">{row.bebas_narkoba}</div>,
         selector: (row) => row.bebas_narkoba,
         sortable: true,
-        width: "100px",
+        width: "80px",
       },
       {
-        name: "Action",
+        name: <div className="text-xxs">Action</div>,
         cell: (row) => (
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => alert(row.id)}>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white text-xxs font-bold py-2 px-4 rounded" onClick={() => alert(row.id)}>
             Detail
           </button>
         ),
@@ -120,7 +131,7 @@ const PasBandara = () => {
   }, [data, search])
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full text-xs">
         <Table 
           columns={columns}
           data={filteredData}

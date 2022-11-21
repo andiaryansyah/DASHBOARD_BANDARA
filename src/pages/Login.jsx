@@ -13,8 +13,8 @@ const handleClick = () => {
   return (
     <section className="bg-[#182A68]">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <img src={logo} alt="logo" className="mb-2 w-16 h-16"/>
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-50 md:text-3xl mb-4">
+        <img src={logo} alt="logo" className="mb-2 w-12 h-12"/>
+        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-50 md:text-xl mb-4">
           BADAN LAYANAN UMUM
           <br /> UPBU SULTAN BANTILAN
         </h1>
