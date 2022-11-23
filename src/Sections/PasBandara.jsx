@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Table from "../components/Table";
 import { getData } from "../store/actions/pasbandaraAction";
 
-const PasBandara = ({sidebarOpen}) => {
+const PasBandara = () => {
   const dispatch = useDispatch()
   const {data} = useSelector((state) => state.pasbandara);
-  console.log(sidebarOpen, "SSSSS");
   const columns = useMemo(
     () => [
       {
@@ -18,11 +17,10 @@ const PasBandara = ({sidebarOpen}) => {
 
       },
       {
-        name: <div className={sidebarOpen === true ? "text-xxs m-auto" : "text-xxs"}>Email</div>,
-        cell:(row) => <div className={sidebarOpen === true ? "text-xxs m-auto" : "text-xxs"}>{row.email}</div>,
+        name: <div className="text-xxs">Email</div>,
+        cell:(row) => <div className="text-xxs">{row.email}</div>,
         selector: (row) => <div>{row.email}</div>,
         sortable: true,
-        // width: {sidebarOpen : true ? "150px" : "190px"},
       },
       {
         name:<div className="text-xxs m-auto">Surat Permohonan</div>,
@@ -44,7 +42,7 @@ const PasBandara = ({sidebarOpen}) => {
         cell:(row) => <div className="text-xxs m-auto">{row.pernyataan_atasan}</div>,
         selector: (row) => row.pernyataan_atasan,
         sortable: true,
-        width: "87px",
+        width: "88px",
       },
       {
         name: <div className="text-xxs m-auto">Riwayat Hidup</div>,
@@ -102,7 +100,7 @@ const PasBandara = ({sidebarOpen}) => {
         width: "70px",
       },
     ],
-    [sidebarOpen]
+    []
   );
 
   const datas = data.map((data, index) => 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   RiDashboard3Line,
   RiArrowLeftSLine,
@@ -9,13 +9,9 @@ import { CiBullhorn } from "react-icons/ci";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import logo from "../assets/logo.png";
 
-const Sidebar = ({handleClick, activeMenu, activeSide}) => {
+const Sidebar = ({handleClick, activeMenu}) => {
   const [open, setOpen] = useState(true);
 
-  useEffect(() => {
-    activeSide(open);
-    // eslint-disable-next-line
-  },[open])
   const menus = [
     { title: "Dashboard", icon: <RiDashboard3Line size={24} /> },
     { title: "Survey", icon: <RiSurveyLine size={24} /> },
