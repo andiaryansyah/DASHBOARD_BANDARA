@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Table from "../components/Table";
 import { getData } from "../store/actions/pasbandaraAction";
 
-const PasBandara = () => {
+const PasBandara = ({sidebarOpen}) => {
   const dispatch = useDispatch()
   const {data} = useSelector((state) => state.pasbandara);
-
+  console.log(sidebarOpen, "SSSSS");
   const columns = useMemo(
     () => [
       {
@@ -22,7 +22,7 @@ const PasBandara = () => {
         cell:(row) => <div className="text-xxs">{row.email}</div>,
         selector: (row) => <div>{row.email}</div>,
         sortable: true,
-        width: "170px",
+        width: {sidebarOpen : true ? "170px" : "190px"},
       },
       {
         name:<div className="text-xxs">Surat Permohonan</div>,
@@ -44,7 +44,7 @@ const PasBandara = () => {
         cell:(row) => <div className="text-xxs">{row.pernyataan_atasan}</div>,
         selector: (row) => row.pernyataan_atasan,
         sortable: true,
-        width: "90px",
+        width: "95px",
       },
       {
         name: <div className="text-xxs">Riwayat Hidup</div>,
@@ -84,7 +84,7 @@ const PasBandara = () => {
       {
         name: <div className="text-xxs">Action</div>,
         cell: (row) => (
-          <button className="bg-blue-500 hover:bg-blue-700 text-white text-xxs font-bold py-2 px-4 rounded" onClick={() => alert(row.id)}>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white text-xxs font-bold py-2 px-4 rounded" onClick={() => alert(row.bebas_narkoba)}>
             Detail
           </button>
         ),

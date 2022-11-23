@@ -7,10 +7,15 @@ import { MenuContext } from "../components/contexts/MenuContext";
 
 const Landingpage = () => {
   const [menus, setMenus] = useState("Dashboard");
+  const [opened, setOpened] = useState(true);
   const pull_data = (data) => {
     setMenus(data);
   };
 
+  const getOpen = (data) => {
+    setOpened(data);
+  };
+  
      const displayMenu = (menu) => {
         switch (menu) {
         case 'Dashboard':
@@ -20,7 +25,7 @@ const Landingpage = () => {
         case 'Survey':
             return <Survey />;
         case 'PAS Bandara':
-            return <PasBandara />;
+            return <PasBandara sidebarOpen={opened}/>;
         case'User':
             return <User />;
         
@@ -30,7 +35,7 @@ const Landingpage = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-row bg-gray-200">
-      <Sidebar handleClick={pull_data} activeMenu={menus} />
+      <Sidebar handleClick={pull_data} activeMenu={menus} activeSide={getOpen}/>
       <div className="w-full flex-col ">
         <section className="w-full px-9 bg-gray-50">
           <div className="py-5 flex justify-end items-center space-x-9">
@@ -38,7 +43,7 @@ const Landingpage = () => {
             <img
               src={user}
               alt="user"
-              className="h-12 w-12 object-cover rounded-full"
+              className="h-9 w-9 object-cover rounded-full"
             />
           </div>
         </section>
