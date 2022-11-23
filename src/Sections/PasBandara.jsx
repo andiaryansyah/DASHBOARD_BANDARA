@@ -10,91 +10,99 @@ const PasBandara = ({sidebarOpen}) => {
   const columns = useMemo(
     () => [
       {
-        name: <div className="text-xxs">No</div>,
-        cell:(row) => <div className="text-xxs">{row.no}</div>,
+        name: <div className="text-xxs m-auto">No</div>,
+        cell:(row) => <div className="text-xxs m-auto">{row.no}</div>,
         selector: (row) => <div>{row.no}</div>,
         sortable: true,
         width: "47px",
 
       },
       {
-        name: <div className="text-xxs">Email</div>,
-        cell:(row) => <div className="text-xxs">{row.email}</div>,
+        name: <div className={sidebarOpen === true ? "text-xxs m-auto" : "text-xxs"}>Email</div>,
+        cell:(row) => <div className={sidebarOpen === true ? "text-xxs m-auto" : "text-xxs"}>{row.email}</div>,
         selector: (row) => <div>{row.email}</div>,
         sortable: true,
-        width: {sidebarOpen : true ? "170px" : "190px"},
+        // width: {sidebarOpen : true ? "150px" : "190px"},
       },
       {
-        name:<div className="text-xxs">Surat Permohonan</div>,
-        cell:(row) => <div className="text-xxs">{row.surat_permohonan}</div>,
+        name:<div className="text-xxs m-auto">Surat Permohonan</div>,
+        cell:(row) => <div className="text-xxs m-auto">{row.surat_permohonan}</div>,
         selector: (row) => row.surat_permohonan,
         sortable: true,
-        width: "95px",
+        width: "93px",
         
       },
       {
-        name: <div className="text-xxs">Pas Foto</div>,
-        cell:(row) => <div className="text-xxs">{row.foto}</div>,
+        name: <div className="text-xxs m-auto">Pas Foto</div>,
+        cell:(row) => <div className="text-xxs m-auto">{row.foto}</div>,
         selector: (row) => row.foto,
         sortable: true,
-        width: "60px",
+        width: "57px",
       },
       {
-        name: <div className="text-xxs">Surat Pernyataan dari atasan</div>,
-        cell:(row) => <div className="text-xxs">{row.pernyataan_atasan}</div>,
+        name: <div className="text-xxs m-auto">Surat Pernyataan dari atasan</div>,
+        cell:(row) => <div className="text-xxs m-auto">{row.pernyataan_atasan}</div>,
         selector: (row) => row.pernyataan_atasan,
         sortable: true,
-        width: "95px",
+        width: "87px",
       },
       {
-        name: <div className="text-xxs">Riwayat Hidup</div>,
-        cell:(row) => <div className="text-xxs">{row.riwayat_hidup}</div>,
+        name: <div className="text-xxs m-auto">Riwayat Hidup</div>,
+        cell:(row) => <div className="text-xxs m-auto">{row.riwayat_hidup}</div>,
         selector: (row) => row.riwayat_hidup,
         sortable: true,
         width: "70px",
       },
       {
-        name: <div className="text-xxs">Identitas</div>,
-        cell:(row) => <div className="text-xxs">{row.identitas}</div>,
+        name: <div className="text-xxs m-auto">Identitas</div>,
+        cell:(row) => <div className="text-xxs m-auto">{row.identitas}</div>,
         selector: (row) => row.identitas,
         sortable: true,
-        width: "80px",
+        width: "78px",
       },
       {
-        name: <div className="text-xxs">SKCK</div>,
-        cell:(row) => <div className="text-xxs">{row.skck}</div>,
+        name: <div className="text-xxs m-auto">SKCK</div>,
+        cell:(row) => <div className="text-xxs m-auto">{row.skck}</div>,
         selector: (row) => row.skck,
         sortable: true,
         width: "60px",
       },
       {
-        name: <div className="text-xxs">SK Pegawai Kontrak</div>,
-        cell:(row) => <div className="text-xxs">{row.sk_pegawai}</div>,
+        name: <div className="text-xxs m-auto">SK Pegawai Kontrak</div>,
+        cell:(row) => <div className="text-xxs m-auto">{row.sk_pegawai}</div>,
         selector: (row) => row.sk_pegawai,
         sortable: true,
-        width: "80px",
+        width: "77px",
       },
       {
-        name: <div className="text-xxs">Surat Bebas Narkoba</div>,
-        cell:(row) => <div className="text-xxs">{row.bebas_narkoba}</div>,
+        name: <div className="text-xxs m-auto">Surat Bebas Narkoba</div>,
+        cell:(row) => <div className="text-xxs m-auto">{row.bebas_narkoba}</div>,
         selector: (row) => row.bebas_narkoba,
         sortable: true,
+        width: "77px",
+      },
+      {
+        name: <div className="text-xxs m-auto">Status</div>,
+        cell: (row) => (
+          <div className="text-xxs m-auto">Verifikasi</div>
+        ),
+        allowOverflow: true,
         width: "80px",
       },
       {
-        name: <div className="text-xxs">Action</div>,
+        name: <div className="text-xxs m-auto">Action</div>,
         cell: (row) => (
-          <button className="bg-blue-500 hover:bg-blue-700 text-white text-xxs font-bold py-2 px-4 rounded" onClick={() => alert(row.bebas_narkoba)}>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white text-xxs font-bold py-2 px-2 rounded m-auto" onClick={() => alert(row.bebas_narkoba)}>
             Detail
           </button>
         ),
         ignoreRowClick: true,
         allowOverflow: true,
         button: true,
-        
+        width: "70px",
       },
     ],
-    []
+    [sidebarOpen]
   );
 
   const datas = data.map((data, index) => 

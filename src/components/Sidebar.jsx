@@ -15,7 +15,7 @@ const Sidebar = ({handleClick, activeMenu, activeSide}) => {
   useEffect(() => {
     activeSide(open);
     // eslint-disable-next-line
-  },[])
+  },[open])
   const menus = [
     { title: "Dashboard", icon: <RiDashboard3Line size={24} /> },
     { title: "Survey", icon: <RiSurveyLine size={24} /> },
