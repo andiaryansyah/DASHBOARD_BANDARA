@@ -6,6 +6,7 @@ import { getData } from "../store/actions/pasbandaraAction";
 const PasBandara = () => {
   const dispatch = useDispatch()
   const {data} = useSelector((state) => state.pasbandara);
+  console.log(data, "LLLLLLLLLLLLLLLLLL");
   const columns = useMemo(
     () => [
       {
@@ -17,8 +18,8 @@ const PasBandara = () => {
 
       },
       {
-        name: <div className="text-xxs">Email</div>,
-        cell:(row) => <div className="text-xxs">{row.email}</div>,
+        name: <div className="text-xxs m-auto">Email</div>,
+        cell:(row) => <div className="text-xxs m-auto">{row.email}</div>,
         selector: (row) => <div>{row.email}</div>,
         sortable: true,
       },
@@ -81,11 +82,9 @@ const PasBandara = () => {
       },
       {
         name: <div className="text-xxs m-auto">Status</div>,
-        cell: (row) => (
-          <div className="text-xxs m-auto">Verifikasi</div>
-        ),
-        allowOverflow: true,
-        width: "80px",
+        cell:(row) => <div className="text-xxs m-auto">{row.status}</div>,
+        selector: (row) => row.status,
+        width: "92px",
       },
       {
         name: <div className="text-xxs m-auto">Action</div>,
@@ -116,6 +115,7 @@ const PasBandara = () => {
         skck:`${data.skck ? "✅" : "❌"}`,
         sk_pegawai: `${data.sk_pegawai ? "✅" : "❌"}`,
         bebas_narkoba: `${data.bebas_narkoba ? "✅" : "❌"}`,
+        status: `${data.status === false ? "Belum Terverifikasi" : "Terverifikasi"}`,
       }
     )
   )
