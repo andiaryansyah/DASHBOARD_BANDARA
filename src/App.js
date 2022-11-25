@@ -4,6 +4,8 @@ import Sidebar from "./components/Sidebar";
 import { Login, Register } from "./pages";
 import { Dashboard, PasBandara, Pengaduan, Survey, User } from "./Sections";
 import user from "../src/assets/user.png";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [menus, setMenus] = useState("Dashboard");
@@ -46,6 +48,7 @@ function App() {
           </section>
         </div>
       </div>
+        <ToastContainer />
     </BrowserRouter>
   );
 }

@@ -1,12 +1,20 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { login } from "../store/actions/pasbandaraAction";
 
 const Login = () => {
 
 const navigate = useNavigate()
-
-const handleClick = () => {
+const dispatch = useDispatch()
+const handleClick = (e) => {
+  e.preventDefault()
+  const payload = {
+    email: e.target[0].value,
+    password: e.target[1].value
+  }
+    dispatch(login(payload))
     navigate("/dashboard")
 }
 
@@ -23,7 +31,7 @@ const handleClick = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
               Masuk ke Akun Anda
             </h1>
-            <form className="space-y-4 md:space-y-6" onSubmit={handleClick}>
+            <form className="space-y-4 md:space-y-6" onSubmit={e => handleClick(e)}>
               <div>
                 <label
                   for="email"
