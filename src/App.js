@@ -1,23 +1,30 @@
-import { useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
-import { Login, Register } from "./pages";
-import { Dashboard, PasBandara, Pengaduan, Survey, User } from "./Sections";
-import user from "../src/assets/user.png";
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate, useRoutes, useNavigate } from "react-router-dom";
+// import Sidebar from "./components/Sidebar";
+// import { Login, Register } from "./pages";
+// import { Dashboard, PasBandara, Pengaduan, Survey, User } from "./Sections";
+// import user from "../src/assets/user.png";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import routes from "./routes";
 
 function App() {
   const [menus, setMenus] = useState("Dashboard");
+  const navigate = useNavigate()
   const pull_data = (data) => {
     setMenus(data);
   };
+  const logout = () => {
+    localStorage.clear();
+    navigate('/login', { replace: true })
+  };
+  const routing = useRoutes(routes(localStorage.getItem('token'), menus, pull_data, logout));
 
   let currPath = window.location.pathname;
 
   return (
-    <BrowserRouter>
-      <div className="w-full min-h-screen flex flex-row bg-gray-200">
+    <React.Fragment>
+      {/* <div className="w-full min-h-screen flex flex-row bg-gray-200">
         {currPath !== "/login" && currPath !== "/register" && (
           <Sidebar handleClick={pull_data} activeMenu={menus} />
         )}
@@ -47,9 +54,10 @@ function App() {
             </Routes>
           </section>
         </div>
-      </div>
+      </div> */}
+        {routing}
         <ToastContainer />
-    </BrowserRouter>
+    </React.Fragment>
   );
 }
 

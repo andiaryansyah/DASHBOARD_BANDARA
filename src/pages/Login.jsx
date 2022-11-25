@@ -2,10 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { login } from "../store/actions/pasbandaraAction";
 
+import { toast } from "react-toastify";
+import axios from 'axios';
+import { setLoading } from "../store/actions/pasbandaraAction";
+import { login, setAuth } from "../store/actions/authAction";
 const Login = () => {
-
+  
 const navigate = useNavigate()
 const dispatch = useDispatch()
 const handleClick = (e) => {
@@ -14,8 +17,29 @@ const handleClick = (e) => {
     email: e.target[0].value,
     password: e.target[1].value
   }
-    dispatch(login(payload))
-    navigate("/dashboard")
+    // dispatch(login(payload))
+    axios
+              ({
+                method: "POST",
+                url: `${process.env.REACT_APP_API_URL}/user/login`,
+                data: payload
+            })
+              .then((res) => {
+                localStorage.setItem('token', res.data.access_token)
+                dispatch(setAuth(true));
+                dispatch(setLoading(false));
+                toast.success(res.data.message, {
+                  position: toast.POSITION.TOP_CENTER,
+                });
+                navigate('/dashboard', { replace: true })
+              })
+              .catch((err) => {
+                dispatch(setLoading(false));
+                toast.error(err.response.data.message, {
+                  position: toast.POSITION.TOP_CENTER,
+                });
+                console.log(err);
+              });
 }
 
   return (
@@ -24,7 +48,12 @@ const handleClick = (e) => {
         <img src={logo} alt="logo" className="mb-2 w-12 h-12"/>
         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-50 md:text-xl mb-4">
           BADAN LAYANAN UMUM
-          <br /> UPBU SULTAN BANTILAN
+        </h1>
+        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-50 md:text-xl mb-4">
+          UNIT PENYELENGGARA BANDAR UDARA KELAS III
+        </h1>
+        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-50 md:text-xl mb-4">
+          SULTAN BANTILAN TOLITOLI
         </h1>
         <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
