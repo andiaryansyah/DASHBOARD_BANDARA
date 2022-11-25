@@ -2,7 +2,7 @@ import React from 'react'
 
 const Survey = () => {
   return (
-    <div>Survey</div>
+    <div className="p-10">Survey</div>
   )
 }
 

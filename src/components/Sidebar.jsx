@@ -8,16 +8,17 @@ import { BsCardChecklist } from "react-icons/bs";
 import { CiBullhorn } from "react-icons/ci";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Sidebar = ({handleClick, activeMenu}) => {
   const [open, setOpen] = useState(true);
 
   const menus = [
-    { title: "Dashboard", icon: <RiDashboard3Line size={24} /> },
-    { title: "Survey", icon: <RiSurveyLine size={24} /> },
-    { title: "Pengaduan", icon: <CiBullhorn size={24} /> },
-    { title: "PAS Bandara", icon: <BsCardChecklist size={24} /> },
-    { title: "User", icon: <HiOutlineUserCircle size={24} /> },
+    { title: "Dashboard", icon: <RiDashboard3Line size={24} />, url:"/dashboard"},
+    { title: "Survey", icon: <RiSurveyLine size={24} />, url:"/survey" },
+    { title: "Pengaduan", icon: <CiBullhorn size={24} />, url:"/pengaduan" },
+    { title: "PAS Bandara", icon: <BsCardChecklist size={24} />, url:"/pasbandara" },
+    { title: "User", icon: <HiOutlineUserCircle size={24} />, url:"/users" },
   ];
 
   return (
@@ -49,6 +50,7 @@ const Sidebar = ({handleClick, activeMenu}) => {
       </div>
       <ul className="pt-16">
         {menus.map((menu, index) => (
+          <Link to={menu.url}>
           <button key={index} onClick={(e) => handleClick(menu.title)} className="w-full">
           <li
             className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer px-2 py-3 hover:bg-light-white ${
@@ -61,6 +63,7 @@ const Sidebar = ({handleClick, activeMenu}) => {
             </div>
           </li>
          </button>
+         </Link>
         ))}
       </ul>
     </div>

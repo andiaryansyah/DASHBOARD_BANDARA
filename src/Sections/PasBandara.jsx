@@ -6,7 +6,7 @@ import { getData } from "../store/actions/pasbandaraAction";
 const PasBandara = () => {
   const dispatch = useDispatch()
   const {data} = useSelector((state) => state.pasbandara);
-  console.log(data, "LLLLLLLLLLLLLLLLLL");
+
   const columns = useMemo(
     () => [
       {
@@ -89,7 +89,7 @@ const PasBandara = () => {
       {
         name: <div className="text-xxs m-auto">Action</div>,
         cell: (row) => (
-          <button className="bg-blue-500 hover:bg-blue-700 text-white text-xxs font-bold py-2 px-2 rounded m-auto" onClick={() => alert(row.bebas_narkoba)}>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white text-xxs font-medium py-2 px-2 rounded m-auto" onClick={() => alert(row.bebas_narkoba)}>
             Detail
           </button>
         ),
@@ -137,7 +137,7 @@ const PasBandara = () => {
   }, [data, search])
 
   return (
-    <div className="w-full h-full text-xs">
+    <div className="w-full h-full text-xs p-10">
         <Table 
           columns={columns}
           data={filteredData}
