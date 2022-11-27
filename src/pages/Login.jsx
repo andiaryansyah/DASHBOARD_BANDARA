@@ -8,6 +8,7 @@ const navigate = useNavigate()
 
 const handleClick = () => {
     navigate("/dashboard")
+    window.location.reload()
 }
 
   return (

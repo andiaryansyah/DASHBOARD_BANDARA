@@ -1,5 +1,6 @@
 import React, { useEffect ,useMemo, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Modal from "../components/Modal";
 import Table from "../components/Table";
 import { getData } from "../store/actions/pasbandaraAction";
 
@@ -89,9 +90,7 @@ const PasBandara = () => {
       {
         name: <div className="text-xxs m-auto">Action</div>,
         cell: (row) => (
-          <button className="bg-blue-500 hover:bg-blue-700 text-white text-xxs font-medium py-2 px-2 rounded m-auto" onClick={() => alert(row.bebas_narkoba)}>
-            Detail
-          </button>
+          <Modal email={row.email}/>
         ),
         ignoreRowClick: true,
         allowOverflow: true,
@@ -115,7 +114,7 @@ const PasBandara = () => {
         skck:`${data.skck ? "✅" : "❌"}`,
         sk_pegawai: `${data.sk_pegawai ? "✅" : "❌"}`,
         bebas_narkoba: `${data.bebas_narkoba ? "✅" : "❌"}`,
-        status: `${data.status === false ? "Belum Terverifikasi" : "Terverifikasi"}`,
+        status: `${data.status === true ? "Terverifikasi" : "Belum Terverifikasi"}`,
       }
     )
   )
