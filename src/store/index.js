@@ -2,10 +2,12 @@ import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from './reducers/authReducer';
 import pasbandaraReducer from './reducers/pasbandaraReducers'
+import userReducer from './reducers/userReducers'
 
 const reducers = combineReducers({
     pasbandara: pasbandaraReducer,
-    auth: authReducer
+    auth: authReducer,
+    users: userReducer,
 })
 
 const middleware = applyMiddleware(thunk)

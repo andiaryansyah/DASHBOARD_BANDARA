@@ -1,6 +1,7 @@
 import { Navigate,Outlet } from 'react-router-dom';
 import Sidebar from "./components/Sidebar";
-import { Login, Register } from "./pages";
+import { Login } from "./pages";
+// import { Register } from "./pages";
 import { Dashboard, PasBandara, Pengaduan, Survey, User } from "./Sections";
 import user from "../src/assets/user.png";
 
@@ -20,10 +21,11 @@ const routes = (isLoggedIn, menus, pull_data, logout) => [
                     />
                 </div>
             </div>
-        </div>
         <Outlet />
+        </div>
     </div>
-    ) : <Navigate to="/login" />,
+    ) : 
+    <Navigate to="/login" />,
     children: [
       { path: '/dashboard', element: <Dashboard /> },
       { path: '/pasbandara', element: <PasBandara /> },

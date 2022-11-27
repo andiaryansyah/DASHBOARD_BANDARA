@@ -1,12 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link} from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 import { toast } from "react-toastify";
 import axios from 'axios';
 import { setLoading } from "../store/actions/pasbandaraAction";
-import { login, setAuth } from "../store/actions/authAction";
+// import { login} from "../store/actions/authAction";
+import { setAuth } from "../store/actions/authAction";
 const Login = () => {
   
 const navigate = useNavigate()
@@ -46,14 +48,8 @@ const handleClick = (e) => {
     <section className="bg-[#182A68]">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <img src={logo} alt="logo" className="mb-2 w-12 h-12"/>
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-50 md:text-xl mb-4">
-          BADAN LAYANAN UMUM
-        </h1>
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-50 md:text-xl mb-4">
-          UNIT PENYELENGGARA BANDAR UDARA KELAS III
-        </h1>
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-50 md:text-xl mb-4">
-          SULTAN BANTILAN TOLITOLI
+        <h1 className="text-xl font-bold w-1/2 leading-loose text-center text-gray-50 md:text-xl mb-4">
+          BADAN LAYANAN UMUM UNIT PENYELENGGARA BANDAR UDARA KELAS III SULTAN BANTILAN TOLITOLI
         </h1>
         <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -93,7 +89,7 @@ const handleClick = (e) => {
                   required=""
                 />
               </div>
-              <div className="flex items-center justify-between">
+              {/* <div className="flex items-center justify-between">
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
                     <input
@@ -116,7 +112,7 @@ const handleClick = (e) => {
                 >
                   Lupa password?
                 </Link>
-              </div>
+              </div> */}
               <button
                 type="submit"
                 className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
@@ -124,7 +120,7 @@ const handleClick = (e) => {
                 Masuk
               </button>
             </form>
-              <p className="text-sm font-light text-gray-500">
+              {/* <p className="text-sm font-light text-gray-500">
                 Belum punya Akun?{" "}
                 <Link
                   to="/register"
@@ -132,7 +128,7 @@ const handleClick = (e) => {
                 >
                   Daftar
                 </Link>
-              </p>
+              </p> */}
           </div>
         </div>
       </div>

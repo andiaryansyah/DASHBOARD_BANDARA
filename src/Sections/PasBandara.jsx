@@ -136,7 +136,7 @@ const PasBandara = () => {
   }, [data, search])
 
   return (
-    <div className="w-full h-full text-xs p-10">
+    <div className="text-xs p-10">
         <Table 
           columns={columns}
           data={filteredData}
