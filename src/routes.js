@@ -11,7 +11,7 @@ const routes = (isLoggedIn, menus, pull_data, logout) => [
     <div className="w-full min-h-screen flex flex-row bg-gray-200">
         <Sidebar handleClick={pull_data} activeMenu={menus} />
         <div className="w-full flex-col ">
-            <section className="w-full px-9 bg-gray-50">
+            <div className="w-full px-9 bg-gray-50">
                 <div className="py-5 flex justify-end items-center space-x-9" onClick={logout}>
                     <img
                     src={user}
@@ -19,7 +19,7 @@ const routes = (isLoggedIn, menus, pull_data, logout) => [
                     className="h-9 w-9 object-cover rounded-full"
                     />
                 </div>
-            </section>
+            </div>
         </div>
         <Outlet />
     </div>
