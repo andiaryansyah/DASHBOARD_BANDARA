@@ -8,7 +8,7 @@ const Dashboard = () => {
         <div className="px-6 py-8">
             <div className="font-bold text-xl mb-2">User</div>
             <p className=" text-base">
-                Angka
+                0
             </p>
         </div>  
     </div>
@@ -17,7 +17,7 @@ const Dashboard = () => {
         <div className="px-6 py-8">
             <div className="font-bold text-xl mb-2">Survey</div>
             <p className=" text-base">
-                Angka
+                0
             </p>
         </div>  
     </div>
@@ -26,7 +26,7 @@ const Dashboard = () => {
         <div className="px-6 py-8">
             <div className="font-bold text-xl mb-2">Pengaduan</div>
             <p className=" text-base">
-                Angka
+                0
             </p>
         </div>  
     </div>
@@ -35,7 +35,7 @@ const Dashboard = () => {
         <div className="px-6 py-8">
             <div className="font-bold text-xl mb-2">Pas Bandara</div>
             <p className=" text-base">
-                Angka
+                0
             </p>
         </div>  
     </div>

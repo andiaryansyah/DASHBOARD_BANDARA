@@ -50,8 +50,8 @@ const Sidebar = ({handleClick, activeMenu}) => {
       </div>
       <ul className="pt-16">
         {menus.map((menu, index) => (
-          <Link to={menu.url}>
-          <button key={index} onClick={(e) => handleClick(menu.title)} className="w-full">
+          <Link key={index} to={menu.url}>
+          <button  onClick={(e) => handleClick(menu.title)} className="w-full">
           <li
             className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer px-2 py-3 hover:bg-light-white ${
               menu.title === activeMenu ? "bg-light-white " :""
