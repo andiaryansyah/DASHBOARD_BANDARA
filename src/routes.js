@@ -13,11 +13,12 @@ const routes = (isLoggedIn, menus, pull_data, logout) => [
         <Sidebar handleClick={pull_data} activeMenu={menus} />
         <div className="w-full flex-col ">
             <div className="w-full px-9 bg-gray-50">
-                <div className="py-5 flex justify-end items-center space-x-9" onClick={logout}>
+                <div className="py-5 flex justify-end items-center space-x-9" >
                     <img
                     src={user}
                     alt="user"
-                    className="h-9 w-9 object-cover rounded-full"
+                    className="h-9 w-9 object-cover rounded-full cursor-pointer"
+                    onClick={logout}
                     />
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { IoMdDownload } from "react-icons/io";
+import {AiFillEye} from "react-icons/ai";
 import JPEG from "../assets/jpeg.svg";
 import PDF from "../assets/pdf.svg";
 
@@ -31,7 +31,7 @@ const Modal = ({ email }) => {
   return (
     <>
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white text-xxs font-semibold py-2 px-2 rounded-sm m-auto"
+        className="bg-gradient-to-b from-blue-500 to-blue-600 hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-800 shadow-blue-600/50 text-white text-xxs font-semibold py-2 px-2 rounded-md m-auto"
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -39,12 +39,12 @@ const Modal = ({ email }) => {
       </button>
       {showModal ? (
         <>
-          <div className="justify-center items-center flex fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-1/2 my-6 mx-auto max-w-5xl overflow-y-auto h-5/6">
+          <div className="justify-center items-center flex fixed inset-0 z-50 outline-none focus:outline-none" onClick={() => setShowModal(false)}>
+            <div className="relative w-1/2 my-6 mx-auto max-w-5xl overflow-y-auto h-5/6" onClick={e => { e.stopPropagation()}}>
               {/*content*/}
               <div className="border-0 shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                <div className="fixed bg-gray-50 w-1/2 flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t z-40">
                   <h3 className="text-3xl font-semibold">Detail Verifikasi</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -56,7 +56,7 @@ const Modal = ({ email }) => {
                   </button>
                 </div>
                 {/*body*/}
-                <div className="relative p-6">
+                <div className="relative p-6 mt-16">
 
                   <div className="w-full p-3">
                     <div className="text-start font-bold">
@@ -73,8 +73,8 @@ const Modal = ({ email }) => {
                         rel="noreferrer"
                         className="px-4"
                       >
-                        <button className="bg-blue-500 hover:bg-blue-700 p-2 text-white flex rounded-md">
-                          <IoMdDownload size={20} className="pr-1" /> Preview
+                        <button className="bg-gradient-to-b from-gray-500 to-gray-600 hover:bg-gradient-to-b hover:from-gray-700 hover:to-gray-800 shadow-gray-600/50 p-2 text-white flex items-center rounded-md">
+                          <AiFillEye size={20} className="pr-1" /> Preview
                         </button>
                       </a>
                       }
@@ -96,8 +96,8 @@ const Modal = ({ email }) => {
                         rel="noreferrer"
                         className="px-4"
                       >
-                        <button className="bg-blue-500 hover:bg-blue-700 p-2 text-white flex rounded-md">
-                          <IoMdDownload size={20} className="pr-1" /> Preview
+                        <button className="bg-gradient-to-b from-gray-500 to-gray-600 hover:bg-gradient-to-b hover:from-gray-700 hover:to-gray-800 shadow-gray-600/50 p-2 text-white flex items-center rounded-md">
+                          <AiFillEye size={20} className="pr-1" /> Preview
                         </button>
                       </a>
                       }
@@ -119,8 +119,8 @@ const Modal = ({ email }) => {
                         rel="noreferrer"
                         className="px-4"
                       >
-                        <button className="bg-blue-500 hover:bg-blue-700 p-2 text-white flex rounded-md">
-                          <IoMdDownload size={20} className="pr-1" /> Preview
+                        <button className="bg-gradient-to-b from-gray-500 to-gray-600 hover:bg-gradient-to-b hover:from-gray-700 hover:to-gray-800 shadow-gray-600/50 p-2 text-white flex items-center rounded-md">
+                          <AiFillEye size={20} className="pr-1" /> Preview
                         </button>
                       </a>
                       }
@@ -142,8 +142,8 @@ const Modal = ({ email }) => {
                         rel="noreferrer"
                         className="px-4"
                       >
-                        <button className="bg-blue-500 hover:bg-blue-700 p-2 text-white flex rounded-md">
-                          <IoMdDownload size={20} className="pr-1" /> Preview
+                        <button className="bg-gradient-to-b from-gray-500 to-gray-600 hover:bg-gradient-to-b hover:from-gray-700 hover:to-gray-800 shadow-gray-600/50 p-2 text-white flex items-center rounded-md">
+                          <AiFillEye size={20} className="pr-1" /> Preview
                         </button>
                       </a>
                       }
@@ -165,8 +165,8 @@ const Modal = ({ email }) => {
                             rel="noreferrer"
                             className="px-4"
                         >
-                            <button className="bg-blue-500 hover:bg-blue-700 p-2 text-white flex rounded-md">
-                            <IoMdDownload size={20} className="pr-1" /> Preview
+                            <button className="bg-gradient-to-b from-gray-500 to-gray-600 hover:bg-gradient-to-b hover:from-gray-700 hover:to-gray-800 shadow-gray-600/50 p-2 text-white flex items-center rounded-md">
+                            <AiFillEye size={20} className="pr-1" /> Preview
                             </button>
                         </a>
                       }
@@ -188,8 +188,8 @@ const Modal = ({ email }) => {
                         rel="noreferrer"
                         className="px-4"
                       >
-                        <button className="bg-blue-500 hover:bg-blue-700 p-2 text-white flex rounded-md">
-                          <IoMdDownload size={20} className="pr-1" /> Preview
+                        <button className="bg-gradient-to-b from-gray-500 to-gray-600 hover:bg-gradient-to-b hover:from-gray-700 hover:to-gray-800 shadow-gray-600/50 p-2 text-white flex items-center rounded-md">
+                          <AiFillEye size={20} className="pr-1" /> Preview
                         </button>
                       </a>
                       }
@@ -211,8 +211,8 @@ const Modal = ({ email }) => {
                         rel="noreferrer"
                         className="px-4"
                       >
-                        <button className="bg-blue-500 hover:bg-blue-700 p-2 text-white flex rounded-md">
-                          <IoMdDownload size={20} className="pr-1" /> Preview
+                        <button className="bg-gradient-to-b from-gray-500 to-gray-600 hover:bg-gradient-to-b hover:from-gray-700 hover:to-gray-800 shadow-gray-600/50 p-2 text-white flex items-center rounded-md">
+                          <AiFillEye size={20} className="pr-1" /> Preview
                         </button>
                       </a>
                       }
@@ -234,8 +234,8 @@ const Modal = ({ email }) => {
                         rel="noreferrer"
                         className="px-4"
                       >
-                        <button className="bg-blue-500 hover:bg-blue-700 p-2 text-white flex rounded-md">
-                          <IoMdDownload size={20} className="pr-1" /> Preview
+                        <button className="bg-gradient-to-b from-gray-500 to-gray-600 hover:bg-gradient-to-b hover:from-gray-700 hover:to-gray-800 shadow-gray-600/50 p-2 text-white flex items-center rounded-md">
+                          <AiFillEye size={20} className="pr-1" /> Preview
                         </button>
                       </a>
                       }
@@ -252,7 +252,7 @@ const Modal = ({ email }) => {
                     Close
                   </button> */}
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="bg-gradient-to-b from-blue-500 to-blue-600 hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-800 shadow-blue-600/50 text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
