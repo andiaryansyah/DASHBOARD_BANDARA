@@ -54,6 +54,8 @@ const ModalAddUser = () => {
         console.log(password, "password");
         console.log(role, "role");
         console.log(status, "status");
+
+        setShowModal(false)
     };
     
     return (
@@ -243,7 +245,7 @@ const ModalAddUser = () => {
                       <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
                         type="submit"
-                        onClick={() => setShowModal(false)}
+                        // onClick={() => setShowModal(false)}
                       >
                         Simpan
                       </button>
