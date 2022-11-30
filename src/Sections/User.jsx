@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Table from "../components/Table";
-import { getUsers } from "../store/actions/userAction";
+import { deleteUser, getUsers } from "../store/actions/userAction";
 
 import {FaTrash} from "react-icons/fa";
 import {AiFillEye, AiFillEdit, } from "react-icons/ai";
@@ -12,7 +12,10 @@ import ModalEdit from "../components/ModalEdit";
 const User = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.users);
-
+  const role = localStorage.getItem("role").toLocaleLowerCase();
+  const delUser = (id) => {
+    dispatch(deleteUser(id))
+  }
   const columns = useMemo(
     () => [
       {
@@ -26,9 +29,9 @@ const User = () => {
         name: <div className="text-xs m-auto">Foto</div>,
         cell: (row) =>
           row.picture_url ? (
-            <div className="text-xs m-auto object-cover rounded-full">{row.picture_url}</div>
+            <img className="h-10 w-10 m-auto object-cover rounded-full" src={row.picture_url} alt="default" />
           ) : (
-            <img className="p-3 object-cover rounded-full" src={defaultPicture} alt="default" />
+            <img className="h-10 w-10 m-auto object-cover rounded-full" src={defaultPicture} alt="default" />
           ),
         selector: (row) => row.picture_url,
         sortable: true,
@@ -71,7 +74,9 @@ const User = () => {
             addIcon={<AiFillEye size={20}/>}
             addTooltip={<span className="tooltip-text text-gray-900 bg-blue-200 p-3 -mt-16 -ml-2 rounded hidden group-hover:block absolute text-center py-2 px-6 z-50">Preview</span>}
             thisClick={"preview"}
-          />
+            />
+            {role === "super admin" ? 
+            <>
           <ModalEdit 
             getEmail={row.email}
             addClassName={"text-xs m-auto p-2 text-blue-500  hover:text-blue-700 rounded-sm"}
@@ -80,23 +85,27 @@ const User = () => {
             thisClick={"edit"}
           />
           <div className="group">
-              <button className="text-xs m-auto p-2 text-red-500  hover:text-red-700 rounded-sm">
+              <button onClick={() => delUser(row.id)} className="text-xs m-auto p-2 text-red-500  hover:text-red-700 rounded-sm">
                 <FaTrash size={15}/>
                 <span className="tooltip-text text-gray-900 bg-blue-200 p-3 -mt-16 -ml-14 rounded hidden group-hover:block absolute text-center py-2 px-6 z-50">Hapus</span>
               </button>
           </div>
+          </>
+          : <></>}
         </div>
         ,
         ignoreRowClick: true,
         allowOverflow: true,
         button: true,
         width: "130px",
-      },
+      }
     ],
+    // eslint-disable-next-line
     []
   );
 
   const datas = users.map((user, index) => ({
+    id: user.id,
     no: index + 1,
     picture_url: user.picture_url,
     fullname: user.full_name,

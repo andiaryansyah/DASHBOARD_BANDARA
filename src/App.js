@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate, useRoutes, useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useRoutes, useNavigate, useLocation } from "react-router-dom";
 // import Sidebar from "./components/Sidebar";
 // import { Login, Register } from "./pages";
 // import { Dashboard, PasBandara, Pengaduan, Survey, User } from "./Sections";
@@ -9,19 +9,62 @@ import 'react-toastify/dist/ReactToastify.css';
 import routes from "./routes";
 
 function App() {
+  const location = useLocation()
   const [menus, setMenus] = useState("Dashboard");
-  const navigate = useNavigate()
+  const [open, setOpen] = useState(false);
+  
+  const navigate = useNavigate();
+  const ref = useRef();
   const pull_data = (data) => {
     setMenus(data);
   };
+
+  const capitalizeFirstLowercaseRest = str => {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  };
+  
+  useEffect(() => {
+    if (location) {
+      const temp = location.pathname.split("/")
+      if (temp[1] === '') {
+        setMenus('Dashboard')
+      }else {
+        const route = capitalizeFirstLowercaseRest(location.pathname.split("/")[1])
+        if (route.toLowerCase() === 'pasbandara') {
+          setMenus("PAS Bandara")
+        } else {
+          setMenus(route)
+        }
+      }
+    }
+  // eslint-disable-next-line
+  },[])
+
+  useEffect(() => {
+    const checkIfClickedOutside = e => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (open && ref.current && !ref.current.contains(e.target)) {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", checkIfClickedOutside)
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside)
+    }
+  }, [open])
+  const avatar = localStorage.getItem("image")
+  
   const logout = () => {
     localStorage.clear();
+    setOpen(false);
+    setMenus("Dashboard")
     navigate('/login', { replace: true })
   };
-  const routing = useRoutes(routes(localStorage.getItem('token'), menus, pull_data, logout));
-
-  let currPath = window.location.pathname;
-
+  const routing = useRoutes(routes(localStorage.getItem('token'), menus, pull_data, logout, open, setOpen, avatar, ref));
   return (
     <React.Fragment>
       {/* <div className="w-full min-h-screen flex flex-row bg-gray-200">

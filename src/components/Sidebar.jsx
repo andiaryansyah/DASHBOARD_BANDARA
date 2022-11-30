@@ -18,7 +18,7 @@ const Sidebar = ({handleClick, activeMenu}) => {
     { title: "Survey", icon: <RiSurveyLine size={24} />, url:"/survey" },
     { title: "Pengaduan", icon: <CiBullhorn size={24} />, url:"/pengaduan" },
     { title: "PAS Bandara", icon: <BsCardChecklist size={24} />, url:"/pasbandara" },
-    { title: "User", icon: <HiOutlineUserCircle size={24} />, url:"/users" },
+    { title: "Users", icon: <HiOutlineUserCircle size={24} />, url:"/users" },
   ];
 
   return (
@@ -66,6 +66,9 @@ const Sidebar = ({handleClick, activeMenu}) => {
          </Link>
         ))}
       </ul>
+      <button className="bottom-10 text-white absolute">
+        Logout
+      </button>
     </div>
   );
 };

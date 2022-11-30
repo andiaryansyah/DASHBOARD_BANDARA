@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-
+import axios from "axios";
 import defaultPhoto from "../assets/user.png";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../store/actions/userAction";
+import { editUser, getUsers } from "../store/actions/userAction";
+import {MdCancel} from 'react-icons/md';
 
 const ModalEdit = ({
   addIcon,
@@ -15,45 +16,61 @@ const ModalEdit = ({
   const { users } = useSelector((state) => state.users);
 
   const [showModal, setShowModal] = useState(false);
+  const [id, setId] = useState(null);
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
   // const [confPassword, setConfPassword] = useState("");
   const [role, setRole] = useState("");
   const [status, setStatus] = useState("");
   const [file, setFile] = useState("");
   const [msg, setMsg] = useState("");
-
+  const [disabled, setDisabled] = useState(false);
+  const uploadFiles = (file, preset) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", preset);
+    axios({
+      method: "POST",
+      url: process.env.REACT_APP_CLOUDINARY_UPLOAD,
+      data: formData,
+    })
+      .then(({ data }) => {
+        setFile(data.secure_url);
+        setDisabled(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setFile(null)
+        setDisabled(false);
+        setMsg("Gagal mengupload gambar. Coba lagi!")
+      });
+  };
+  
   const handleChange = (e) => {
     const image = e.target.files[0];
-    const name = e.target.name;
+    // const name = e.target.name;
     // const id = e.target.id;
     // setLoading(true);
-    setMsg({ ...msg, [name]: null });
+    setMsg(null);
     if (image && image.size > 1048576) {
-      setMsg({
-        ...msg,
-        [name]: "Melebihi ukuran file",
-      });
+      setMsg("Melebihi ukuran file");
     } else {
-      // uploadFiles(image, id, name);
-      // setFiles({
-      //   ...files,
-      //   [name]: image,
-      // });
-      setFile(image);
+      setDisabled(true);
+      uploadFiles(image, "foto-preset");
+
     }
   };
+  
 
   const getUser = async () => {
     const findIndex = await users.findIndex((user) => user.email === getEmail);
-
+    setId(users[findIndex].id)
     setFullname(users[findIndex].full_name);
     setEmail(users[findIndex].email);
     setRole(users[findIndex].role);
     setStatus(users[findIndex].is_active);
     setFile(users[findIndex].picture_url);
-
     setShowModal(true);
   };
 
@@ -67,7 +84,10 @@ const ModalEdit = ({
       return (
         setFullname(""),
         setEmail(""),
-        setPassword(""),
+        // setPassword(""),
+        setDisabled(false),
+        setMsg(""),
+        setFile(""),
         // setConfPassword(""),
         setRole(""),
         setStatus("")
@@ -75,14 +95,11 @@ const ModalEdit = ({
     }
   }, [showModal]);
 
-  const onSubmit = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    console.log(file, "POTOOO");
-    console.log(fullname, "FULLNAME");
-    console.log(email, "EMAIL");
-    console.log(password, "password");
-    console.log(role, "role");
-    console.log(status, "status");
+    const payload = { full_name: fullname, picture_url: file, email, status: (status === "true"), role };
+    dispatch(editUser(payload, id));
+    setShowModal(false);
   };
 
   return (
@@ -127,17 +144,37 @@ const ModalEdit = ({
                   <div className="relative mt-16">
                     <form
                       className="bg-white px-8 pt-8 pb-5 text-start"
-                      onSubmit={onSubmit}
+                      // onSubmit={onSubmit}
                     >
                       <div>
                         {file ? (
-                          "ada"
+                          <>
+                          <img
+                          src={file}
+                          alt="default"
+                          className="m-auto object-cover h-28 w-28 rounded-full mb-4"
+                        />
+                        { msg ? 
+                          <div className="flex items-center justify-center p-2 text-red-600">
+                              <MdCancel size={20}/>
+                              <h1 className="ml-2 text-lg">{msg}</h1>
+                          </div>
+                          : <></>}
+                          </>
                         ) : (
+                          <>
                           <img
                             src={defaultPhoto}
                             alt="default"
                             className="m-auto object-cover h-28 w-28 rounded-full mb-4"
                           />
+                          { msg ? 
+                            <div className="flex items-center justify-center p-2 text-red-600">
+                                <MdCancel size={20}/>
+                                <h1 className="ml-2 text-lg">{msg}</h1>
+                            </div>
+                            : <></>}
+                            </>
                         )}
                       </div>
                       {thisClick === "preview" ? null : (
@@ -146,7 +183,7 @@ const ModalEdit = ({
                             className="block text-gray-50 text-sm font-bold mb-2 cursor-pointer px-6 py-3 bg-gradient-to-b from-blue-500 to-blue-600 hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-800 shadow-lg shadow-blue-600/50 border-none rounded-full"
                             htmlFor="picture_url"
                           >
-                            Change Picture
+                            {disabled ? "Uploading..." : "Change Picture"}
                           </label>
                           <input
                             className=" w-3/12  py-2 px-3 text-gray-700 leading-tight hidden"
@@ -299,7 +336,7 @@ const ModalEdit = ({
                           <button
                             className="bg-gradient-to-b from-blue-500 to-blue-600 hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-800 shadow-blue-600/50 text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
                             type="submit"
-                            onClick={() => setShowModal(false)}
+                            onClick={(e) => handleClick(e)}
                           >
                             Simpan
                           </button>

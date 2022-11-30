@@ -1,11 +1,7 @@
-import React, { useCallback } from "react";
+import React from "react";
 import DataTable, { defaultThemes } from "react-data-table-component";
 
 const Table = ({columns, data, searchValue, handleSearch, addComponent}) => {
-  
-
-  // unlike class methods updateState will be re-created on each render pass, therefore, make sure that callbacks passed to onSelectedRowsChange are memoized using useCallback
-  const updateState = useCallback((state) => console.log(state), []);
 
   const customStyles = {
     header: {
@@ -49,7 +45,6 @@ const Table = ({columns, data, searchValue, handleSearch, addComponent}) => {
         pagination
         paginationPerPage={5}
         paginationRowsPerPageOptions={[5,10, 20, 30, 50]}
-        onSelectedRowsChange={updateState}
         customStyles={customStyles}
         highlightOnHover
         // actions={<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Export</button>}

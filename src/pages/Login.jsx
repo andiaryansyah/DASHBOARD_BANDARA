@@ -28,12 +28,15 @@ const handleClick = (e) => {
             })
               .then((res) => {
                 localStorage.setItem('token', res.data.access_token)
+                localStorage.setItem('image', res.data.avatar)
+                localStorage.setItem('fullname', res.data.full_name)
+                localStorage.setItem('role', res.data.role)
                 dispatch(setAuth(true));
                 dispatch(setLoading(false));
                 toast.success(res.data.message, {
                   position: toast.POSITION.TOP_CENTER,
                 });
-                navigate('/dashboard', { replace: true })
+                navigate('/dashboard')
               })
               .catch((err) => {
                 dispatch(setLoading(false));

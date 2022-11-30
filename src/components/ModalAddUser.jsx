@@ -1,4 +1,8 @@
 import React, {useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import axios from 'axios';
+import { toast } from "react-toastify";
+import { getUsers } from "../store/actions/userAction";
 // import { useSelector } from "react-redux";
 
 const ModalAddUser = () => {
@@ -7,11 +11,13 @@ const ModalAddUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
-  const [role, setRole] = useState("");
-  const [status, setStatus] = useState("");
+  const [role, setRole] = useState("Admin");
+  // const [status, setStatus] = useState(true);
   const [file, setFile] = useState("");
   const [msg, setMsg] = useState("");
   
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
     const image = e.target.files[0];
     const name = e.target.name;
@@ -19,10 +25,7 @@ const ModalAddUser = () => {
     // setLoading(true);
     setMsg({ ...msg, [name]: null });
     if (image && image.size > 1048576) {
-      setMsg({
-        ...msg,
-        [name]: "Melebihi ukuran file",
-      });
+      setMsg("Melebihi ukuran file");
     } else {
       // uploadFiles(image, id, name);
       // setFiles({
@@ -40,22 +43,40 @@ const ModalAddUser = () => {
               setEmail(""),
               setPassword(""),
               setConfPassword(""),
-              setRole(""),
-            setStatus("")
+              setRole("")
+            // setStatus("")
         )
         }
     },[showModal])
     
     const onSubmit = (e) => {
     e.preventDefault();
-    console.log(file, "POTOOO");
-        console.log(fullname, "FULLNAME");
-        console.log(email, "EMAIL");
-        console.log(password, "password");
-        console.log(role, "role");
-        console.log(status, "status");
-
-        setShowModal(false)
+    const payload = { full_name: fullname, email, password, picture_url: file, role }
+    if(!role) payload.role = "Admin"
+    // if(!status) payload.status = true
+    axios
+            ({
+              method: "POST",
+              url: `${process.env.REACT_APP_API_URL}/user/register`,
+              headers: {
+                  access_token: localStorage.getItem('token')
+              },
+              data: payload
+          })
+            .then((res) => {
+              dispatch(getUsers())
+              toast.success(res.data.message, {
+                position: toast.POSITION.TOP_CENTER,
+              });
+              setShowModal(false)
+            })
+            .catch((err) => {
+              let errMessage = "Gagal menambahkan User baru!"
+              if (err.response.data.message) errMessage = err.response.data.message 
+              toast.error(errMessage, {
+                position: toast.POSITION.TOP_CENTER,
+              });
+            });
     };
     
     return (
@@ -162,6 +183,7 @@ const ModalAddUser = () => {
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                         id="password"
                         type="password"
+                        required
                         placeholder="******************"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -179,6 +201,7 @@ const ModalAddUser = () => {
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                         id="confPassword"
                         type="password"
+                        required
                         placeholder="******************"
                         value={confPassword}
                         onChange={(e) => setConfPassword(e.target.value)}
@@ -207,8 +230,8 @@ const ModalAddUser = () => {
                       </label>
                       <select
                         className="shadow appearance-none border rounded w-full py-2 px-3  text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        value={role}
-                        // defaultValue="Admin"
+                        // value={"role"}
+                        defaultValue="Admin"
                         onChange={(e) => setRole(e.target.value)}
                       >
                         <option hidden>Pilih Role</option>
@@ -219,7 +242,7 @@ const ModalAddUser = () => {
                       </select>
                     </div>
 
-                    <div className="mb-6 w-full">
+                    {/* <div className="mb-6 w-full">
                       <label
                         className="block text-gray-700 text-sm font-bold mb-2"
                         htmlFor="status"
@@ -238,7 +261,7 @@ const ModalAddUser = () => {
                         </option>
                         <option value={false}>Non Aktif</option>
                       </select>
-                    </div>
+                    </div> */}
 
                     {/*footer*/}
                     <div className="flex items-center justify-end p-6">
