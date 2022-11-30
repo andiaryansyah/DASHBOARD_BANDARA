@@ -206,11 +206,11 @@ const ModalAddUser = () => {
                       <select
                         className="shadow appearance-none border rounded w-full py-2 px-3  text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                         value={role}
-                        defaultValue="Admin"
+                        // defaultValue="Admin"
                         onChange={(e) => setRole(e.target.value)}
                       >
-                        <option value="" hidden>Pilih Role</option>
-                        <option value="Admin" selected>
+                        <option hidden>Pilih Role</option>
+                        <option value="Admin">
                           Admin
                         </option>
                         <option value="Super Admin">Super Admin</option>
@@ -227,7 +227,7 @@ const ModalAddUser = () => {
                       <select
                         className="shadow appearance-none border rounded w-full py-2 px-3  text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                         value={status}
-                        defaultValue={true}
+                        // defaultValue={true}
                         onChange={(e) => setStatus(e.target.value)}
                       >
                         <option hidden>Pilih Status</option>
