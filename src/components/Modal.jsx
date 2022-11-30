@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {AiFillEye} from "react-icons/ai";
 import JPEG from "../assets/jpeg.svg";
 import PDF from "../assets/pdf.svg";
+import { getData } from "../store/actions/pasbandaraAction";
+import { toast } from "react-toastify";
+import axios from 'axios';
 
 const Modal = ({ email }) => {
   const { data } = useSelector((state) => state.pasbandara);
   const [showModal, setShowModal] = useState(false);
+
+  const dispatch = useDispatch()
 
   const findData = data.findIndex((item) => item.email === email);
 
@@ -26,6 +31,30 @@ const Modal = ({ email }) => {
         return <img src={JPEG} alt="jpg" />
     }
 }
+  }
+
+  function handleVerifikasi(id) {
+    let isExecuted = window.confirm("Apakah anda yakin akan memverifikasi data?");
+    if (isExecuted) {
+      axios({
+        method: "PATCH",
+        url: `${process.env.REACT_APP_API_URL}/pasbandara/verified/${id}`,
+    })
+    .then((res) => {
+      dispatch(getData());
+      toast.success(res.data.message, {
+        position: toast.POSITION.TOP_CENTER
+      });
+      setShowModal(false)
+    })
+    .catch((err) => {
+      let errMessage = "Verifikasi gagal. Coba lagi!"
+      if (err.response.data.message) errMessage = err.response.data.message 
+      toast.error(errMessage, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    });
+    }
   }
 
   return (
@@ -254,7 +283,7 @@ const Modal = ({ email }) => {
                   <button
                     className="bg-gradient-to-b from-blue-500 to-blue-600 hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-800 shadow-blue-600/50 text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => handleVerifikasi(data[findData].id)}
                   >
                     Verifikasi
                   </button>

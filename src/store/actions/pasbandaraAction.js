@@ -37,3 +37,34 @@ export function getData () {
     }
 }
 
+// export function verifiedPas (id) {
+//   return async (dispatch, getState) => {
+//       try {
+//           dispatch(setLoading(true));
+//           await axios
+//             ({
+//               method: "PATCH",
+//               url: `${process.env.REACT_APP_API_URL}/pasbandara/verified/${id}`,
+//           })
+//             .then((res) => {
+//               dispatch(setLoading(false));
+//               dispatch(getData());
+//               toast.success(res.data.message, {
+//                 position: toast.POSITION.TOP_CENTER
+//               });
+//             })
+//             .catch((err) => {
+//               dispatch(setLoading(false));
+//               let errMessage = "Verifikasi gagal. Coba lagi!"
+//               if (err.response.data.message) errMessage = err.response.data.message 
+//               toast.error(errMessage, {
+//                 position: toast.POSITION.TOP_CENTER,
+//               });
+//             });
+//         } catch (error) {
+//           dispatch(setLoading(false));
+//           console.log(error);
+//         }
+//   }
+// }
+

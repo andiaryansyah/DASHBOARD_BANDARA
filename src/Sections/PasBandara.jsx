@@ -104,6 +104,7 @@ const PasBandara = () => {
   const datas = data.map((data, index) => 
     (
       {
+        id: data.id,
         no:index + 1,
         email: data.email,
         surat_permohonan: `${data.surat_permohonan ? "✅" : "❌"}`,
