@@ -34,7 +34,9 @@ const Modal = ({ email }) => {
   }
 
   function handleVerifikasi(id) {
-    axios({
+    let isExecuted = window.confirm("Apakah anda yakin akan memverifikasi data?");
+    if (isExecuted) {
+      axios({
         method: "PATCH",
         url: `${process.env.REACT_APP_API_URL}/pasbandara/verified/${id}`,
     })
@@ -43,6 +45,7 @@ const Modal = ({ email }) => {
       toast.success(res.data.message, {
         position: toast.POSITION.TOP_CENTER
       });
+      setShowModal(false)
     })
     .catch((err) => {
       let errMessage = "Verifikasi gagal. Coba lagi!"
@@ -51,7 +54,7 @@ const Modal = ({ email }) => {
         position: toast.POSITION.TOP_CENTER,
       });
     });
-    setShowModal(false)
+    }
   }
 
   return (

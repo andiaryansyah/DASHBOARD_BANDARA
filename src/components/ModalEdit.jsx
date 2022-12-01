@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import defaultPhoto from "../assets/user.png";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser, getUsers } from "../store/actions/userAction";
@@ -26,6 +27,7 @@ const ModalEdit = ({
   const [file, setFile] = useState("");
   const [msg, setMsg] = useState("");
   const [disabled, setDisabled] = useState(false);
+
   const uploadFiles = (file, preset) => {
     const formData = new FormData();
     formData.append("file", file);
@@ -97,9 +99,21 @@ const ModalEdit = ({
 
   const handleClick = (e) => {
     e.preventDefault();
-    const payload = { full_name: fullname, picture_url: file, email, status: (status === "true"), role };
-    dispatch(editUser(payload, id));
-    setShowModal(false);
+    let dataStatus
+    if (email === "admin@mail.com" && role.toLocaleLowerCase() === "super admin" && (status === "false" || status === false)) {
+      toast.error("User Super Admin tidak dapat dinonaktifkan!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else {
+      if (status === "true" || status === true) {
+        dataStatus = true
+      } else {
+        dataStatus = false
+      }
+      const payload = { full_name: fullname, picture_url: file, email, status: dataStatus, role };
+      dispatch(editUser(payload, id));
+      setShowModal(false);
+    }
   };
 
   return (
