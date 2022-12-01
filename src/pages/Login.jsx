@@ -52,7 +52,7 @@ const handleClick = (e) => {
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <img src={logo} alt="logo" className="mb-2 w-12 h-12"/>
         <h1 className="text-xl font-bold w-1/2 leading-loose text-center text-gray-50 md:text-xl mb-4">
-          BADAN LAYANAN UMUM UNIT PENYELENGGARA BANDAR UDARA KELAS III SULTAN BANTILAN TOLITOLI
+          ADMIN PAS BANDARA UPBU SULTAN BANTILAN TOLITOLI
         </h1>
         <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
