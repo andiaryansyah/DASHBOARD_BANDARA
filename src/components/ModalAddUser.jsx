@@ -95,7 +95,7 @@ const ModalAddUser = () => {
             onClick={() => setShowModal(false)}
           >
             <div
-              className="relative w-1/2 my-6 mx-auto max-w-5xl overflow-y-auto h-5/6"
+              className="relative w-11/12 md:w-1/2 my-6 mx-auto max-w-5xl overflow-y-auto h-5/6"
               onClick={(e) => {
                 e.stopPropagation();
               }}
@@ -103,7 +103,7 @@ const ModalAddUser = () => {
               {/*content*/}
               <div className="border-0 shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
-                <div className="fixed bg-gray-50 w-1/2 flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t z-40">
+                <div className="fixed bg-gray-50 w-11/12 md:w-1/2 flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t z-40">
                   <h3 className="text-3xl font-semibold">Form </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"

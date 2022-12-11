@@ -9,6 +9,13 @@ export const setAuth = (payload) => {
   };
 };
 
+export const setDashboard = (payload) => {
+  return { 
+    type: "DATA_DASHBOARD", 
+    payload:payload 
+  };
+};
+
 export const setLoading = (payload) => {
   return { 
     type: "USERS/LOADING", 
@@ -45,5 +52,25 @@ export function login (payload) {
             dispatch(setLoading(false));
             console.log(error);
           }
+    }
+  }
+
+  export function getDataDashboard() {
+    return async (dispatch, getState) => {
+      try {
+        await axios 
+        ({
+          method: "GET",
+          url: `${process.env.REACT_APP_API_URL}/data`,
+      })
+      .then((res) => {
+        dispatch(setDashboard(res.data))
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      } catch (error) {
+        console.log(error);
+      }
     }
   }

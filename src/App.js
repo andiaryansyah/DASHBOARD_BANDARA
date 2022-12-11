@@ -38,7 +38,7 @@ function App() {
       }
     }
   // eslint-disable-next-line
-  },[])
+  },[location])
 
   useEffect(() => {
     const checkIfClickedOutside = e => {

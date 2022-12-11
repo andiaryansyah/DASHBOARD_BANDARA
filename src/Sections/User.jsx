@@ -131,13 +131,14 @@ const User = () => {
   }, [users, search]);
 
   return (
-    <div className="text-xs p-10">
+    <div className="text-xs p-5 md:p-9">
       <Table
         columns={columns}
         data={filteredData}
         searchValue={search}
         handleSearch={(e) => setSearch(e.target.value)}
         addComponent={<ModalAddUser/>}
+        placeholder={"Pencarian Email"}
       />
     </div>
   );

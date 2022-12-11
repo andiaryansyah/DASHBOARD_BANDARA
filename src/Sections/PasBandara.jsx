@@ -1,148 +1,144 @@
 import React, { useEffect ,useMemo, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Select from 'react-select'
 import Modal from "../components/Modal";
 import Table from "../components/Table";
-import { getData } from "../store/actions/pasbandaraAction";
+import { getData, setFilter, setStatus } from "../store/actions/pasbandaraAction";
 
 const PasBandara = () => {
   const dispatch = useDispatch()
-  const {data} = useSelector((state) => state.pasbandara);
+  const {data, filter, status} = useSelector((state) => state.pasbandara);
 
   const columns = useMemo(
     () => [
       {
-        name: <div className="text-xxs m-auto">No</div>,
-        cell:(row) => <div className="text-xxs m-auto">{row.no}</div>,
+        name: <div className="text-xs m-auto">No</div>,
+        cell:(row) => <div className="text-xs m-auto">{row.no}</div>,
         selector: (row) => <div>{row.no}</div>,
         sortable: true,
-        width: "47px",
+        width: "50px",
 
       },
       {
-        name: <div className="text-xxs m-auto">Email</div>,
-        cell:(row) => <div className="text-xxs m-auto">{row.email}</div>,
+        name:<div className="text-xs m-auto">Tanggal</div>,
+        cell:(row) => <div className="text-xs m-auto">{row.tanggal}</div>,
+        selector: (row) => row.tanggal,
+        sortable: true,
+        width: "160px",
+        
+      },
+      {
+        name: <div className="text-xs m-auto">Email</div>,
+        cell:(row) => <div className="text-xs m-auto">{row.email}</div>,
         selector: (row) => <div>{row.email}</div>,
         sortable: true,
       },
       {
-        name:<div className="text-xxs m-auto">Surat Permohonan</div>,
-        cell:(row) => <div className="text-xxs m-auto">{row.surat_permohonan}</div>,
-        selector: (row) => row.surat_permohonan,
+        name: <div className="text-xs m-auto">No. HP/WA</div>,
+        cell:(row) => <div className="text-xs m-auto">{row.no_hp}</div>,
+        selector: (row) => row.no_hp,
         sortable: true,
-        width: "93px",
-        
+        width: "150px",
       },
       {
-        name: <div className="text-xxs m-auto">Pas Foto</div>,
-        cell:(row) => <div className="text-xxs m-auto">{row.foto}</div>,
-        selector: (row) => row.foto,
-        sortable: true,
-        width: "57px",
-      },
-      {
-        name: <div className="text-xxs m-auto">Surat Pernyataan dari atasan</div>,
-        cell:(row) => <div className="text-xxs m-auto">{row.pernyataan_atasan}</div>,
-        selector: (row) => row.pernyataan_atasan,
-        sortable: true,
-        width: "88px",
-      },
-      {
-        name: <div className="text-xxs m-auto">Riwayat Hidup</div>,
-        cell:(row) => <div className="text-xxs m-auto">{row.riwayat_hidup}</div>,
-        selector: (row) => row.riwayat_hidup,
-        sortable: true,
-        width: "70px",
-      },
-      {
-        name: <div className="text-xxs m-auto">Identitas</div>,
-        cell:(row) => <div className="text-xxs m-auto">{row.identitas}</div>,
-        selector: (row) => row.identitas,
-        sortable: true,
-        width: "78px",
-      },
-      {
-        name: <div className="text-xxs m-auto">SKCK</div>,
-        cell:(row) => <div className="text-xxs m-auto">{row.skck}</div>,
-        selector: (row) => row.skck,
-        sortable: true,
-        width: "60px",
-      },
-      {
-        name: <div className="text-xxs m-auto">SK Pegawai Kontrak</div>,
-        cell:(row) => <div className="text-xxs m-auto">{row.sk_pegawai}</div>,
-        selector: (row) => row.sk_pegawai,
-        sortable: true,
-        width: "77px",
-      },
-      {
-        name: <div className="text-xxs m-auto">Surat Bebas Narkoba</div>,
-        cell:(row) => <div className="text-xxs m-auto">{row.bebas_narkoba}</div>,
-        selector: (row) => row.bebas_narkoba,
-        sortable: true,
-        width: "77px",
-      },
-      {
-        name: <div className="text-xxs m-auto">Status</div>,
-        cell:(row) => <div className="text-xxs m-auto">{row.status}</div>,
+        name: <div className="text-xs m-auto">Status</div>,
+        cell:(row) => <div className="text-xs m-auto">{row.status}</div>,
         selector: (row) => row.status,
-        width: "92px",
+        sortable: true,
+        width: "150px",
       },
       {
-        name: <div className="text-xxs m-auto">Action</div>,
+        name: <div className="text-xs m-auto">Action</div>,
         cell: (row) => (
           <Modal email={row.email}/>
         ),
         ignoreRowClick: true,
         allowOverflow: true,
         button: true,
-        width: "70px",
+        width: "130px",
       },
     ],
     []
   );
+
+  const formatterDate = (date) => {
+    return new Intl.DateTimeFormat("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit"
+    }).format(Date.parse(date));
+  };
+
 
   const datas = data.map((data, index) => 
     (
       {
         id: data.id,
         no:index + 1,
+        tanggal: formatterDate(data.createdAt),
         email: data.email,
-        surat_permohonan: `${data.surat_permohonan ? "✅" : "❌"}`,
-        foto: `${data.foto ? "✅" : "❌"}`,
-        pernyataan_atasan: `${data.pernyataan_atasan ? "✅" : "❌"}`,
-        riwayat_hidup: `${data.riwayat_hidup ? "✅" : "❌"}`,
-        identitas: `${data.identitas ? "✅" : "❌"}`,
-        skck:`${data.skck ? "✅" : "❌"}`,
-        sk_pegawai: `${data.sk_pegawai ? "✅" : "❌"}`,
-        bebas_narkoba: `${data.bebas_narkoba ? "✅" : "❌"}`,
+        no_hp: data.no_hp,
         status: `${data.status === true ? "Terverifikasi" : "Belum Terverifikasi"}`,
+        // foto: `${data.foto ? "✅" : "❌"}`,
       }
     )
   )
 
   const [search, setSearch] = useState("");
-  const [filteredData, setFilteredData] = useState(datas);
+  const [cekStatus, setCekStatus] = useState(status)
+  // const [filteredData, setFilteredData] = useState(datas);
+
+  const filterStatus = [
+    { value:"all", label:"Semua"},
+    { value:"verified", label:"Terverifikasi"},
+    { value:"unverified", label:"Menunggu Terverifikasi"}
+  ];
+
+  const statusDropdown = <div className="flex items-center md:ml-10">
+                              <span className="text-slate-700 mr-1">Status <span className="pl-5 md:pl-0">:</span></span>
+                            <Select
+                              className=""
+                              options={filterStatus}
+                              placeholder="Pilih Status"
+                              value={filterStatus.find((option) => {
+                                return option.value === cekStatus
+                            })}
+                              onChange={(e) => setCekStatus(e.value, e.label)}
+                            />
+                        </div>
 
   useEffect(() => {
-   dispatch(getData())
+   dispatch(getData({filter, status}))
+
    // eslint-disable-next-line
   }, [])
   
   useEffect(() => {
-    const result = datas.filter(newData => {
-      return newData.email.toLowerCase().match(search.toLowerCase());
-    })
-    setFilteredData(result)
+      dispatch(setFilter(search))
+      dispatch(setStatus(cekStatus))
+
 // eslint-disable-next-line
-  }, [data, search])
+  }, [search, cekStatus])
+
+  useEffect(() => {
+    dispatch(getData({filter, status}))
+
+  // eslint-disable-next-line
+  },[filter, status])
+
+  useEffect(() => {
+
+  },[data])
 
   return (
-    <div className="text-xs p-10">
+    <div className="text-xs p-5 md:p-9">
         <Table 
           columns={columns}
-          data={filteredData}
+          data={datas}
           searchValue={search}
           handleSearch={(e) => setSearch(e.target.value)}
+          statusDropdown={statusDropdown}
+          placeholder={"Pencarian Email/No.HP"}
         />
     </div>
   );

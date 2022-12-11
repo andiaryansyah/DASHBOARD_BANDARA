@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import axios from 'axios';
 
 const Modal = ({ email }) => {
-  const { data } = useSelector((state) => state.pasbandara);
+  const { data, status, filter } = useSelector((state) => state.pasbandara);
   const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch()
@@ -23,9 +23,9 @@ const Modal = ({ email }) => {
     if (filename === null ) {
         return <p className="py-3 px-1">Tidak ada File</p>
     } else {
-    let filter = filename.split(".").pop();
+    let filterFile = filename.split(".").pop();
 
-    if (filter.toLowerCase() === "pdf") {
+    if (filterFile.toLowerCase() === "pdf") {
         return <img src={PDF} alt="pdf" />
     } else {
         return <img src={JPEG} alt="jpg" />
@@ -41,7 +41,7 @@ const Modal = ({ email }) => {
         url: `${process.env.REACT_APP_API_URL}/pasbandara/verified/${id}`,
     })
     .then((res) => {
-      dispatch(getData());
+      dispatch(getData({filter, status}));
       toast.success(res.data.message, {
         position: toast.POSITION.TOP_CENTER
       });
@@ -60,7 +60,7 @@ const Modal = ({ email }) => {
   return (
     <>
       <button
-        className="bg-gradient-to-b from-blue-500 to-blue-600 hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-800 shadow-blue-600/50 text-white text-xxs font-semibold py-2 px-2 rounded-md m-auto"
+        className="bg-gradient-to-b from-blue-500 to-blue-600 hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-800 shadow-blue-600/50 text-white text-xs font-semibold py-2 px-5 rounded-md m-auto"
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -69,11 +69,11 @@ const Modal = ({ email }) => {
       {showModal ? (
         <>
           <div className="justify-center items-center flex fixed inset-0 z-50 outline-none focus:outline-none" onClick={() => setShowModal(false)}>
-            <div className="relative w-1/2 my-6 mx-auto max-w-5xl overflow-y-auto h-5/6" onClick={e => { e.stopPropagation()}}>
+            <div className="relative w-11/12 md:w-1/2 my-6 mx-auto max-w-5xl overflow-y-auto h-5/6" onClick={e => { e.stopPropagation()}}>
               {/*content*/}
               <div className="border-0 shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
-                <div className="fixed bg-gray-50 w-1/2 flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t z-40">
+                <div className="fixed bg-gray-50 w-11/12 md:w-1/2 flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t z-40">
                   <h3 className="text-3xl font-semibold">Detail Verifikasi</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"

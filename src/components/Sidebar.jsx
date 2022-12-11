@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import {
   RiDashboard3Line,
   RiArrowLeftSLine,
-  RiSurveyLine,
+  // RiSurveyLine,
 } from "react-icons/ri";
 import { BsCardChecklist } from "react-icons/bs";
-import { CiBullhorn } from "react-icons/ci";
+// import { CiBullhorn } from "react-icons/ci";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
@@ -15,8 +15,8 @@ const Sidebar = ({handleClick, activeMenu}) => {
 
   const menus = [
     { title: "Dashboard", icon: <RiDashboard3Line size={24} />, url:"/dashboard"},
-    { title: "Survey", icon: <RiSurveyLine size={24} />, url:"/survey" },
-    { title: "Pengaduan", icon: <CiBullhorn size={24} />, url:"/pengaduan" },
+    // { title: "Survey", icon: <RiSurveyLine size={24} />, url:"/survey" },
+    // { title: "Pengaduan", icon: <CiBullhorn size={24} />, url:"/pengaduan" },
     { title: "PAS Bandara", icon: <BsCardChecklist size={24} />, url:"/pasbandara" },
     { title: "Users", icon: <HiOutlineUserCircle size={24} />, url:"/users" },
   ];
@@ -24,12 +24,12 @@ const Sidebar = ({handleClick, activeMenu}) => {
   return (
     <div
       className={`${
-        open ? "w-72" : "w-20"
-      } duration-300 h-screen p-5 pt-8 bg-[#182A68] relative`}
+        open ? "w-72" : "w-0 md:w-20"
+      } duration-300 h-screen md:p-5 pt-8 bg-[#182A68] absolute z-10 md:z-0 md:relative`}
     >
       <RiArrowLeftSLine
         size={20}
-        className={`absolute cursor-pointer rounded-full bg-white -right-3 top-9  border-2 border-[#182A68] h-7 w-7 ${
+        className={`absolute cursor-pointer rounded-full bg-white -right-12 md:-right-3 top-7 md:top-9  border-2 border-[#182A68] h-7 w-7 ${
           !open && "rotate-180"
         }`}
         onClick={() => setOpen(!open)}
@@ -48,6 +48,7 @@ const Sidebar = ({handleClick, activeMenu}) => {
           SULTAN BANTILAN
         </h1>
       </div>
+      
       <ul className="pt-16">
         {menus.map((menu, index) => (
           <Link key={index} to={menu.url}>
@@ -57,7 +58,7 @@ const Sidebar = ({handleClick, activeMenu}) => {
               menu.title === activeMenu ? "bg-light-white " :""
             }`}
             >
-            <div>{menu.icon}</div>
+            <div className={`${!open && "hidden md:inline-block"}`}>{menu.icon}</div>
             <div className={`${!open && "hidden"} origin-left duration-200 text-base`}>
               {menu.title}
             </div>
@@ -66,9 +67,6 @@ const Sidebar = ({handleClick, activeMenu}) => {
          </Link>
         ))}
       </ul>
-      <button className="bottom-10 text-white absolute">
-        Logout
-      </button>
     </div>
   );
 };

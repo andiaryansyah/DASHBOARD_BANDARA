@@ -6,6 +6,21 @@ export function setData (payload) {
         payload:payload
     }
 }
+
+export function setFilter (payload) {
+  return {
+      type:"SET_FILTER",
+      payload:payload
+  }
+}
+
+export function setStatus (payload) {
+  return {
+      type:"SET_STATUS",
+      payload:payload
+  }
+}
+
 export const setLoading = (payload) => {
   return { 
     type: "USERS/LOADING", 
@@ -13,14 +28,14 @@ export const setLoading = (payload) => {
   };
 };
 
-export function getData () {
+export function getData (query) {
     return async (dispatch, getState) => {
         try {
             dispatch(setLoading(true));
             await axios
               ({
                 method: "GET",
-                url: `${process.env.REACT_APP_API_URL}/pasbandara/all`,
+                url: `${process.env.REACT_APP_API_URL}/pasbandara/all?status=${query.status}&&data=${query.filter}`,
             })
               .then((res) => {
                 dispatch(setLoading(false));

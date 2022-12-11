@@ -1,7 +1,7 @@
 import React from "react";
 import DataTable, { defaultThemes } from "react-data-table-component";
 
-const Table = ({columns, data, searchValue, handleSearch, addComponent}) => {
+const Table = ({columns, data, searchValue, handleSearch, placeholder, addComponent, statusDropdown}) => {
 
   const customStyles = {
     header: {
@@ -39,29 +39,32 @@ const Table = ({columns, data, searchValue, handleSearch, addComponent}) => {
   return (
     <div className="text-center">
       <DataTable
-        
+        className="overscroll-x-auto"
         columns={columns}
         data={data}
         pagination
-        paginationPerPage={5}
-        paginationRowsPerPageOptions={[5,10, 20, 30, 50]}
+        paginationPerPage={7}
+        paginationRowsPerPageOptions={[5,7,10, 20, 30, 50]}
         customStyles={customStyles}
         highlightOnHover
         // actions={<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Export</button>}
         subHeader
         subHeaderComponent={
-          <div className="flex items-center justify-between w-full">
-            <div>
+          <div className="relative flex flex-col md:flex-row items-start md:items-center md:justify-between py-2 md:py-3 w-full">
+            <div className="mb-3 md:mb-0">
               <label className="mr-1">
-                Search : 
+                Pencarian : 
               </label>
               <input 
                 className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                 type="text" 
-                placeholder="Search Email"
+                placeholder={placeholder}
                 value={searchValue}
                 onChange={handleSearch}
                 />
+            </div>
+            <div className="md:absolute left-56 z-50">
+              {statusDropdown}
             </div>
             <div>
               {addComponent}
