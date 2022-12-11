@@ -28,7 +28,7 @@ const routes = (isLoggedIn, menus, pull_data, logout, open, setOpen, avatar, ref
                 <div className="absolute border border-gray-300 right-4 w-auto bg-white rounded-sm z-40 shadow-xl">
                   <span className="block px-6 py-3 text-gray-800 hover:bg-gray-200">halo, {localStorage.getItem("fullname")}</span>
                   {/* <a className="block border flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200"><CgProfile className='mr-3' size={20} /> Profil</a> */}
-                  <span ref={ref} onClick={logout} className="cursor-pointer block border flex items-center px-6 py-3 text-gray-800 hover:bg-gray-200"><CgLogOut className='mr-3' size={20} />Keluar</span>
+                  <span ref={ref} onClick={logout} className="cursor-pointer border flex items-center px-6 py-3 text-gray-800 hover:bg-gray-200"><CgLogOut className='mr-3' size={20} />Keluar</span>
                 </div> : null
                 }
             </div>
