@@ -63,7 +63,7 @@ const Table = ({columns, data, searchValue, handleSearch, placeholder, addCompon
                 onChange={handleSearch}
                 />
             </div>
-            <div className="md:absolute left-56 z-50">
+            <div className="md:absolute left-56 z-10">
               {statusDropdown}
             </div>
             <div>

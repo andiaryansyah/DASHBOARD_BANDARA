@@ -28,8 +28,8 @@ const PasBandara = () => {
         
       },
       {
-        name: <div className="text-xs m-auto">Email</div>,
-        cell:(row) => <div className="text-xs m-auto">{row.email}</div>,
+        name: <div className="text-xs ">Email</div>,
+        cell:(row) => <div className="text-xs ">{row.email}</div>,
         selector: (row) => <div>{row.email}</div>,
         sortable: true,
       },

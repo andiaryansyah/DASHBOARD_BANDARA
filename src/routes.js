@@ -32,7 +32,9 @@ const routes = (isLoggedIn, menus, pull_data, logout, open, setOpen, avatar, ref
                 </div> : null
                 }
             </div>
-        <Outlet />
+          <div className='pb-12'>
+            <Outlet />
+          </div>
         </div>
     </div>
     ) : 

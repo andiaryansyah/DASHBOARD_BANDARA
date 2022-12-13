@@ -13,6 +13,10 @@ module.exports = {
         hxl:'48px',
         xxs:'10px',
     },
+    borderWidth: {
+      '10': '10px',
+      '16': '16px',
+    },
     },
   },
   

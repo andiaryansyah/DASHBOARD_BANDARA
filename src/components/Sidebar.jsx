@@ -6,7 +6,10 @@ import {
 } from "react-icons/ri";
 import { BsCardChecklist } from "react-icons/bs";
 // import { CiBullhorn } from "react-icons/ci";
-import { HiOutlineUserCircle } from "react-icons/hi";
+import { 
+  HiOutlineUserCircle, 
+  // HiOutlineHome,
+} from "react-icons/hi";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 
@@ -25,7 +28,7 @@ const Sidebar = ({handleClick, activeMenu}) => {
     <div
       className={`${
         open ? "w-72" : "w-0 md:w-20"
-      } duration-300 h-screen md:p-5 pt-8 bg-[#182A68] absolute z-10 md:z-0 md:relative`}
+      } duration-300 h-screen md:h-auto md:p-5 pt-8 bg-[#182A68] absolute z-20 md:z-0 md:relative`}
     >
       <RiArrowLeftSLine
         size={20}
@@ -66,6 +69,12 @@ const Sidebar = ({handleClick, activeMenu}) => {
          </button>
          </Link>
         ))}
+        {/* <li >
+        <a href="https://sultanbantilanairport.com" className="absolute bottom-10 text-white flex gap-x-4 items-center px-2 ">
+        <HiOutlineHome size={24} className={`${!open && "hidden md:inline-block"}`}/>
+          <span className={`${!open && "hidden"} origin-left duration-200 text-base pt-1`}>Home</span> 
+        </a>
+        </li> */}
       </ul>
     </div>
   );
