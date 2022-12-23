@@ -4,6 +4,7 @@ import Select from 'react-select'
 import Modal from "../components/Modal";
 import Table from "../components/Table";
 import { getData, setFilter, setStatus } from "../store/actions/pasbandaraAction";
+import {FiSend} from 'react-icons/fi';
 
 const PasBandara = () => {
   const dispatch = useDispatch()
@@ -50,7 +51,19 @@ const PasBandara = () => {
       {
         name: <div className="text-xs m-auto">Action</div>,
         cell: (row) => (
-          <Modal email={row.email}/>
+          <div className="flex justify-center items-center gap-x-2">
+            <div className="group">
+            <Modal email={row.email} />
+            <span className="tooltip-text text-gray-900 bg-blue-200 p-3 -mt-16 -ml-10 rounded hidden group-hover:block absolute text-center py-2 px-6 z-50">Detail</span>
+            </div>
+            <div className="group">
+            <button onClick={() => onClickSend()} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-800 shadow-blue-600/50 text-white text-xs font-semibold py-2 px-3 rounded-md m-auto">
+              <FiSend />
+            </button>
+                <span className="tooltip-text text-gray-900 bg-blue-200 p-3 -mt-16 -ml-5 rounded hidden group-hover:block absolute text-center py-2 px-6 z-50">Send</span>
+            </div>
+          </div>
+
         ),
         ignoreRowClick: true,
         allowOverflow: true,
@@ -87,6 +100,10 @@ const PasBandara = () => {
   const [search, setSearch] = useState("");
   const [cekStatus, setCekStatus] = useState(status)
   // const [filteredData, setFilteredData] = useState(datas);
+
+  const onClickSend = () => {
+
+  }
 
   const filterStatus = [
     { value:"all", label:"Semua"},

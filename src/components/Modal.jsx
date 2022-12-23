@@ -6,6 +6,7 @@ import PDF from "../assets/pdf.svg";
 import { getData } from "../store/actions/pasbandaraAction";
 import { toast } from "react-toastify";
 import axios from 'axios';
+import {TbListDetails} from 'react-icons/tb';
 
 const Modal = ({ email }) => {
   const { data, status, filter } = useSelector((state) => state.pasbandara);
@@ -60,11 +61,11 @@ const Modal = ({ email }) => {
   return (
     <>
       <button
-        className="bg-gradient-to-b from-blue-500 to-blue-600 hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-800 shadow-blue-600/50 text-white text-xs font-semibold py-2 px-5 rounded-md m-auto"
+        className="bg-gradient-to-b from-blue-500 to-blue-600 hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-800 shadow-blue-600/50 text-white text-xs font-semibold py-2 px-3 rounded-md m-auto"
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Detail
+        <TbListDetails />
       </button>
       {showModal ? (
         <>
