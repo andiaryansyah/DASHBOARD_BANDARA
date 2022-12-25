@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Select from 'react-select'
 import Modal from "../components/Modal";
 import Table from "../components/Table";
-import { getData, setFilter, setStatus } from "../store/actions/pasbandaraAction";
+import { getData, setFilter, setLoading, setStatus } from "../store/actions/pasbandaraAction";
 import {FiSend} from 'react-icons/fi';
+import axios from 'axios';
+import { toast } from "react-toastify";
 
 const PasBandara = () => {
   const dispatch = useDispatch()
-  const {data, filter, status} = useSelector((state) => state.pasbandara);
+  const {data, filter, status, loading} = useSelector((state) => state.pasbandara);
 
   const columns = useMemo(
     () => [
@@ -57,10 +59,10 @@ const PasBandara = () => {
             <span className="tooltip-text text-gray-900 bg-blue-200 p-3 -mt-16 -ml-10 rounded hidden group-hover:block absolute text-center py-2 px-6 z-50">Detail</span>
             </div>
             <div className="group">
-            <button onClick={() => onClickSend()} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-800 shadow-blue-600/50 text-white text-xs font-semibold py-2 px-3 rounded-md m-auto">
+            <button onClick={() => onClickSend(row.email, row.no_hp)} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-800 shadow-blue-600/50 text-white text-xs font-semibold py-2 px-3 rounded-md m-auto">
               <FiSend />
             </button>
-                <span className="tooltip-text text-gray-900 bg-blue-200 p-3 -mt-16 -ml-5 rounded hidden group-hover:block absolute text-center py-2 px-6 z-50">Send</span>
+                <span className="tooltip-text text-gray-900 bg-blue-200 p-3 -mt-16 -ml-5 rounded hidden group-hover:block absolute text-center py-2 px-6 z-50">kirim email</span>
             </div>
           </div>
 
@@ -101,8 +103,29 @@ const PasBandara = () => {
   const [cekStatus, setCekStatus] = useState(status)
   // const [filteredData, setFilteredData] = useState(datas);
 
-  const onClickSend = () => {
-
+  const onClickSend = (email, no_hp) => {
+    dispatch(setLoading(true));
+    axios
+              ({
+                method: "POST",
+                url: `${process.env.REACT_APP_API_URL}/mailer/sendmail`,
+                headers: {
+                    access_token: localStorage.getItem('token')
+                },
+                data: {email, no_hp}
+            })
+              .then((res) => {
+                dispatch(setLoading(false));
+                toast.success("Email notifikasi berhasil dikirim!", {
+                  position: toast.POSITION.TOP_CENTER,
+                });
+              })
+              .catch((err) => {
+               dispatch(setLoading(false));
+                toast.error("Gagal mengirim email!", {
+                  position: toast.POSITION.TOP_CENTER,
+                });
+              });
   }
 
   const filterStatus = [
@@ -148,6 +171,9 @@ const PasBandara = () => {
   },[data])
 
   return (
+    <>
+    {
+      loading && loading ? <h1>loading......</h1> : 
     <div className="text-xs p-5 md:p-9">
         <Table 
           columns={columns}
@@ -158,6 +184,8 @@ const PasBandara = () => {
           placeholder={"Pencarian Email/No.HP"}
         />
     </div>
+    }
+    </>
   );
 };
 

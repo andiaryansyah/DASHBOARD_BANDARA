@@ -23,7 +23,7 @@ export function setStatus (payload) {
 
 export const setLoading = (payload) => {
   return { 
-    type: "USERS/LOADING", 
+    type: "SET_LOADING", 
     payload:payload 
   };
 };

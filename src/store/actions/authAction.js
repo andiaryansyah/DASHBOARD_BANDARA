@@ -18,7 +18,7 @@ export const setDashboard = (payload) => {
 
 export const setLoading = (payload) => {
   return { 
-    type: "USERS/LOADING", 
+    type: "AUTH/LOADING", 
     payload:payload 
   };
 };
@@ -58,17 +58,20 @@ export function login (payload) {
   export function getDataDashboard() {
     return async (dispatch, getState) => {
       try {
-        await axios 
-        ({
-          method: "GET",
-          url: `${process.env.REACT_APP_API_URL}/data`,
-      })
-      .then((res) => {
-        dispatch(setDashboard(res.data))
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        dispatch(setLoading(true));
+          await axios 
+          ({
+            method: "GET",
+            url: `${process.env.REACT_APP_API_URL}/data`,
+        })
+        .then((res) => {
+          dispatch(setLoading(false));
+          dispatch(setDashboard(res.data))
+        })
+        .catch((err) => {
+          dispatch(setLoading(false));
+          console.log(err);
+        });
       } catch (error) {
         console.log(error);
       }
