@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   RiDashboard3Line,
   RiArrowLeftSLine,
-  // RiSurveyLine,
+  RiSurveyLine,
 } from "react-icons/ri";
 import { BsCardChecklist } from "react-icons/bs";
 // import { CiBullhorn } from "react-icons/ci";
@@ -13,12 +13,13 @@ import {
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 
-const Sidebar = ({handleClick, activeMenu}) => {
+const Sidebar = ({handleClick, activeMenu, openSidebar}) => {
   const [open, setOpen] = useState(true);
-
+  
+  openSidebar(open);
   const menus = [
     { title: "Dashboard", icon: <RiDashboard3Line size={24} />, url:"/dashboard"},
-    // { title: "Survey", icon: <RiSurveyLine size={24} />, url:"/survey" },
+    { title: "Survey", icon: <RiSurveyLine size={24} />, url:"/survey" },
     // { title: "Pengaduan", icon: <CiBullhorn size={24} />, url:"/pengaduan" },
     { title: "PAS Bandara", icon: <BsCardChecklist size={24} />, url:"/pasbandara" },
     { title: "Users", icon: <HiOutlineUserCircle size={24} />, url:"/users" },
@@ -28,8 +29,9 @@ const Sidebar = ({handleClick, activeMenu}) => {
     <div
       className={`${
         open ? "w-72" : "w-0 md:w-20"
-      } duration-300 h-screen md:h-auto md:p-5 pt-8 bg-[#182A68] absolute z-20 md:z-0 md:relative`}
+      } duration-300 h-full md:p-5 pt-8 bg-[#182A68] fixed z-20 `}
     >
+      {/* h-full md:h-auto md:p-5 pt-8 bg-[#182A68] fixed z-20 md:z-0 md:relative */}
       <RiArrowLeftSLine
         size={20}
         className={`absolute cursor-pointer rounded-full bg-white -right-12 md:-right-3 top-7 md:top-9  border-2 border-[#182A68] h-7 w-7 ${

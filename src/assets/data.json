@@ -1,0 +1,224 @@
+{
+  "kualitasPelayanan": [
+    {
+      "name": "Informasi",
+      "Tidak Memadai": 2,
+      "Kurang Memadai": 4,
+      "Cukup Memadai": 1,
+      "Memadai": 8,
+      "Sangat Memadai": 11
+    },
+    {
+      "name": "Persyaratan",
+      "Tidak Memadai": 1,
+      "Kurang Memadai": 3,
+      "Cukup Memadai": 7,
+      "Memadai": 18,
+      "Sangat Memadai": 12
+    },
+    {
+      "name": "Prosedur/Alur",
+      "Tidak Memadai": 2,
+      "Kurang Memadai": 12,
+      "Cukup Memadai": 1,
+      "Memadai": 5,
+      "Sangat Memadai": 12
+    },
+    {
+      "name": "Waktu Penyelesaian",
+      "Tidak Memadai": 7,
+      "Kurang Memadai": 2,
+      "Cukup Memadai": 1,
+      "Memadai": 4,
+      "Sangat Memadai": 12
+    },
+    {
+      "name": "Tarif/Biaya",
+      "Tidak Memadai": 4,
+      "Kurang Memadai": 9,
+      "Cukup Memadai": 1,
+      "Memadai": 5,
+      "Sangat Memadai": 12
+    },
+    {
+      "name": "Sarana Prasarana",
+      "Tidak Memadai": 10,
+      "Kurang Memadai": 7,
+      "Cukup Memadai": 1,
+      "Memadai": 15,
+      "Sangat Memadai": 11
+    },
+    {
+      "name": "Respon",
+      "Tidak Memadai": 7,
+      "Kurang Memadai": 12,
+      "Cukup Memadai": 1,
+      "Memadai": 9,
+      "Sangat Memadai": 11
+    },
+    {
+      "name": "Konsultasi dan Pengaduan",
+      "Tidak Memadai": 12,
+      "Kurang Memadai": 2,
+      "Cukup Memadai": 1,
+      "Memadai": 6,
+      "Sangat Memadai": 11
+    }
+  ],
+  "penyimpanganPelayanan": [
+    {
+      "name": "Diskriminasi",
+      "Tidak Memadai": 10,
+      "Kurang Memadai": 8,
+      "Cukup Memadai": 1,
+      "Memadai": 17,
+      "Sangat Memadai": 12
+    },
+    {
+      "name": "Kecurangan",
+      "Tidak Memadai": 10,
+      "Kurang Memadai": 8,
+      "Cukup Memadai": 1,
+      "Memadai": 6,
+      "Sangat Memadai": 12
+    },
+    {
+      "name": "Gratifikasi",
+      "Tidak Memadai": 12,
+      "Kurang Memadai": 15,
+      "Cukup Memadai": 1,
+      "Memadai": 4,
+      "Sangat Memadai": 12
+    },
+    {
+      "name": "Pungli",
+      "Tidak Memadai": 12,
+      "Kurang Memadai": 8,
+      "Cukup Memadai": 1,
+      "Memadai": 3,
+      "Sangat Memadai": 12
+    },
+    {
+      "name": "Calo",
+      "Tidak Memadai": 14,
+      "Kurang Memadai": 7,
+      "Cukup Memadai": 1,
+      "Memadai": 5,
+      "Sangat Memadai": 12
+    }
+  ],
+  "pengarahanPetugas": [
+    {
+      "name": "Ya",
+      "value": 1
+    },
+    {
+      "name": "Tidak",
+      "value": 11
+    }
+  ],
+  "usia": [
+    {
+      "name": "18-20 Tahun",
+      "value": 1
+    },
+    {
+      "name": "21-30 Tahun",
+      "value": 4
+    },
+    {
+      "name": "31-40 Tahun",
+      "value": 5
+    },
+    {
+      "name": "41-50 Tahun",
+      "value": 2
+    },
+    {
+      "name": "51-60 Tahun",
+      "value": 0
+    },
+    {
+      "name": "Diatas 60 Tahun",
+      "value": 0
+    }
+  ],
+  "perbaikan": [
+    {
+      "name": "Kebijakan Pelayanan",
+      "value": 1
+    },
+    {
+      "name": "Profesionalisme SDM",
+      "value": 5
+    },
+    {
+      "name": "Kualitas Sarana Prasarana",
+      "value": 1
+    },
+    {
+      "name": "Sistem Informasi dan Pelayanan Publik",
+      "value": 9
+    },
+    {
+      "name": "Konsultasi dan Pengaduan",
+      "value": 1
+    },
+    {
+      "name": "Penghilangan Praktik Pungli",
+      "value": 3
+    },
+    {
+      "name": "Penghilangan Praktik Diluar Prosedur",
+      "value": 1
+    },
+    {
+      "name": "Penghilangan Praktik Percaloan",
+      "value": 14
+    },
+    {
+      "name": "Tidak ada yang perlu diperbaiki",
+      "value": 2
+    }
+  ],
+  "jenisKelamin": [
+    {
+      "name": "Laki-Laki",
+      "value": 8
+    },
+    {
+      "name": "Perempuan",
+      "value": 4
+    }
+  ],
+  "pendidikan": [
+    {
+      "name": "Sekolah Dasar (SD)",
+      "value": 1
+    },
+    {
+      "name": "Sekolah Menengah Pertama (SMP)",
+      "value": 4
+    },
+    {
+      "name": "Sekolah Menengah Atas (SMA)",
+      "value": 7
+    },
+    {
+      "name": "Diploma",
+      "value": 3
+    },
+    {
+      "name": "Strata 1 (S1)",
+      "value": 7
+    },
+    {
+      "name": "Strata 2 (S2)",
+      "value": 2
+    },
+    {
+      "name": "Strata 3 (S3)",
+      "value": 4
+    }
+  ]
+}
