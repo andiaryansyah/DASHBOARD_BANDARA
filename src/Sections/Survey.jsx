@@ -130,12 +130,12 @@ const Survey = () => {
                 <>
                   <div className="grid grid-cols-1 justify-between gap-y-10">
                     <PieChart
-                      data={newData.pengarahanPetugas}
+                      data={dataChart.result.pengarahanPetugas}
                       title="PENGARAHAN PETUGAS"
                       COLORS={COLORS_PETUGAS}
                     />
                     <BarChart2
-                      data={newData.perbaikan}
+                      data={dataChart.result.perbaikan}
                       title="PERBAIKAN"
                       setAngle={-45}
                       anchor="end"
