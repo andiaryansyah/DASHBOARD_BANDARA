@@ -1,6 +1,7 @@
 
 import { toast } from "react-toastify";
 import axios from 'axios';
+import { setLoading } from "../actions/miscellaneousAction";
 
 export const setAuth = (payload) => {
   return { 
@@ -16,12 +17,12 @@ export const setDashboard = (payload) => {
   };
 };
 
-export const setLoading = (payload) => {
-  return { 
-    type: "USERS/LOADING", 
-    payload:payload 
-  };
-};
+// export const setLoading = (payload) => {
+//   return { 
+//     type: "USERS/LOADING", 
+//     payload:payload 
+//   };
+// };
 
 export function login (payload) {
     return async (dispatch, getState) => {
@@ -46,11 +47,11 @@ export function login (payload) {
                 toast.error(err.response.data.message, {
                   position: toast.POSITION.TOP_CENTER,
                 });
-                console.log(err);
+                // console.log(err);
               });
           } catch (error) {
             dispatch(setLoading(false));
-            console.log(error);
+            // console.log(error);
           }
     }
   }
@@ -58,6 +59,7 @@ export function login (payload) {
   export function getDataDashboard() {
     return async (dispatch, getState) => {
       try {
+        dispatch(setLoading(true));
         await axios 
         ({
           method: "GET",
@@ -65,12 +67,17 @@ export function login (payload) {
       })
       .then((res) => {
         dispatch(setDashboard(res.data))
+        dispatch(setLoading(false));
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
+        dispatch(setLoading(false));
+        toast.error(err.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       });
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     }
   }

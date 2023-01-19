@@ -3,12 +3,11 @@ import { useDispatch } from "react-redux";
 // import { Link} from "react-router-dom";
 import {useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-
 import { toast } from "react-toastify";
 import axios from 'axios';
-import { setLoading } from "../store/actions/pasbandaraAction";
-// import { login} from "../store/actions/authAction";
+// import { setLoading } from "../store/actions/miscellaneousAction";
 import { setAuth } from "../store/actions/authAction";
+
 const Login = () => {
   
 const navigate = useNavigate()
@@ -19,7 +18,7 @@ const handleClick = (e) => {
     email: e.target[0].value,
     password: e.target[1].value
   }
-    // dispatch(login(payload))
+    // dispatch(setLoading(true));
     axios
               ({
                 method: "POST",
@@ -32,14 +31,14 @@ const handleClick = (e) => {
                 localStorage.setItem('fullname', res.data.full_name)
                 localStorage.setItem('role', res.data.role)
                 dispatch(setAuth(true));
-                dispatch(setLoading(false));
+                // dispatch(setLoading(false));
                 toast.success(res.data.message, {
                   position: toast.POSITION.TOP_CENTER,
                 });
                 navigate('/dashboard')
               })
               .catch((err) => {
-                dispatch(setLoading(false));
+                // dispatch(setLoading(false));
                 toast.error(err.response.data.message, {
                   position: toast.POSITION.TOP_CENTER,
                 });

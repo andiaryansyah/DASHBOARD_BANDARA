@@ -5,6 +5,9 @@ import Modal from "../components/Modal";
 import Table from "../components/Table";
 import { getData, setFilter, setStatus } from "../store/actions/pasbandaraAction";
 import {FiSend} from 'react-icons/fi';
+import { setLoading } from "../store/actions/miscellaneousAction";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const PasBandara = () => {
   const dispatch = useDispatch()
@@ -101,8 +104,25 @@ const PasBandara = () => {
   const [cekStatus, setCekStatus] = useState(status)
   // const [filteredData, setFilteredData] = useState(datas);
 
-  const onClickSend = () => {
-
+  const onClickSend = ({email, no_hp}) => {
+    dispatch(setLoading(true));
+    axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_URL}/mailer/sendMail`,
+      data: {email, no_hp}
+    }).then((res) => {
+      dispatch(setLoading(false));
+      toast.success('Email berhasil dikirim!', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    })
+    .catch((err) => {
+      dispatch(setLoading(false));
+      toast.error('Gagal mengirim email. Silahkan coba lagi!', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      // console.log(err);
+    });
   }
 
   const filterStatus = [

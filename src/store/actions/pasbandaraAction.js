@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setLoading } from "../actions/miscellaneousAction";
 
 export function setData (payload) {
     return {
@@ -21,17 +22,10 @@ export function setStatus (payload) {
   }
 }
 
-export const setLoading = (payload) => {
-  return { 
-    type: "USERS/LOADING", 
-    payload:payload 
-  };
-};
-
 export function getData (query) {
     return async (dispatch, getState) => {
         try {
-            dispatch(setLoading(true));
+            // dispatch(setLoading(true));
             await axios
               ({
                 method: "GET",

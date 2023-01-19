@@ -8,10 +8,12 @@ import {AiFillEye, AiFillEdit, } from "react-icons/ai";
 import defaultPicture from "../assets/user.png";
 import ModalAddUser from "../components/ModalAddUser";
 import ModalEdit from "../components/ModalEdit";
+import Loading from "../components/Loading";
 
 const User = () => {
   const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.users);
+  const { users, Loading } = useSelector((state) => state.users);
+  // const { loading } = useSelector((state) => state.miscellaneous);
   const role = localStorage.getItem("role").toLocaleLowerCase();
   const delUser = (id) => {
     dispatch(deleteUser(id))
@@ -132,14 +134,17 @@ const User = () => {
 
   return (
     <div className="text-xs p-5 md:p-9">
-      <Table
-        columns={columns}
-        data={filteredData}
-        searchValue={search}
-        handleSearch={(e) => setSearch(e.target.value)}
-        addComponent={<ModalAddUser/>}
-        placeholder={"Pencarian Email"}
-      />
+      {
+        // loading && loading ? <Loading /> :
+        <Table
+          columns={columns}
+          data={filteredData}
+          searchValue={search}
+          handleSearch={(e) => setSearch(e.target.value)}
+          addComponent={<ModalAddUser/>}
+          placeholder={"Pencarian Email"}
+        />
+      }
     </div>
   );
 };

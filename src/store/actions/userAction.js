@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toast } from "react-toastify";
+// import { setLoading } from './miscellaneousAction';
 
 export function setUsers (payload) {
     return {
@@ -24,11 +25,11 @@ export function getUsers () {
                 url: `${process.env.REACT_APP_API_URL}/user/all`,
                 headers: {
                     access_token: localStorage.getItem('token')
-                  }
+                }
             })
               .then((res) => {
-                dispatch(setLoading(false));
                 dispatch(setUsers(res.data));
+                dispatch(setLoading(false));
               })
               .catch((err) => {
                 dispatch(setLoading(false));
