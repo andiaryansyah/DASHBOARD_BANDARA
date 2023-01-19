@@ -28,7 +28,7 @@ const Dashboard = () => {
 
   return (
     <div className="p-10">
-      {loading ? <div className="flex justify-center items-center"><Loading /></div> : 
+      {loading ? <div className="flex justify-center items-center relative h-screen"><Loading /></div> : 
       <div className="grid grid-rows-2 md:grid-cols-4 gap-y-8 md:gap-y-0 gap-x-8">
         <div className=" pt-3 pb-12 relative max-w-sm rounded-md overflow-hidden shadow-lg bg-cyan-600 text-gray-50">
           <div>

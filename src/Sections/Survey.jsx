@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Accordion from "../components/Accordion";
 import BarChart from "../components/BarChart";
 import BarChart2 from "../components/BarChart2";
-import newData from "../assets/data.json";
+// import newData from "../assets/data.json";
 import PieChart from "../components/PieChart";
 import LineChart from "../components/LineChart";
 import AreaChart from "../components/AreaChart";
@@ -43,7 +43,7 @@ const Survey = () => {
   return (
     <div className="p-10">
       {loading ? (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center relative h-screen">
           <Loading />
         </div>
       ) : (

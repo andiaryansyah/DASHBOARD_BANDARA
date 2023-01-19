@@ -164,7 +164,7 @@ const PasBandara = () => {
 
   return (
     <div className="text-xs p-5 md:p-9">
-      {loading ? <div><Loading /></div> : 
+      {loading ? <div className="flex justify-center items-center relative h-screen"><Loading /></div> : 
         <Table 
           columns={columns}
           data={datas}
