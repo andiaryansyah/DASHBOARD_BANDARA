@@ -17,8 +17,8 @@ const AreaChart = ({ data, title }) => {
       <Accordion
         title={title}
         icons={<RiBarChart2Line className="ml-3" />}
-        content={data.map((item) => (
-          <div>
+        content={data.map((item, index) => (
+          <div key={index}>
             {item.name} = {item.value}
           </div>
         ))}

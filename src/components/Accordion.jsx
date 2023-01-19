@@ -4,7 +4,7 @@ const Accordion = ({ title, content, bgColor, icons }) => {
   return (
     <div className={`relative overflow-hidden ${bgColor}`}>
         <input type="checkbox" className="peer absolute top-0 inset-x-0 w-full h-12 opacity-0 z-10 cursor-pointer" />
-        <div className="h-12 w-full pl-5 flex items-center font-bold text-gray-600">
+        <div className="h-12 w-full pl-5 flex items-center font-bold text-gray-600 text-xl">
             <h1>
                 {title}
             </h1>

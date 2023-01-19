@@ -11,10 +11,11 @@ import { setStatus } from "../store/actions/pasbandaraAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getDataDashboard } from "../store/actions/authAction";
+import Loading from "../components/Loading";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const {dashboard} = useSelector((state) => state.auth)
+  const {dashboard, loading} = useSelector((state) => state.auth)
 
   useEffect(() => {
     dispatch(getDataDashboard())
@@ -27,6 +28,7 @@ const Dashboard = () => {
 
   return (
     <div className="p-10">
+      {loading ? <div className="flex justify-center items-center"><Loading /></div> : 
       <div className="grid grid-rows-2 md:grid-cols-4 gap-y-8 md:gap-y-0 gap-x-8">
         <div className=" pt-3 pb-12 relative max-w-sm rounded-md overflow-hidden shadow-lg bg-cyan-600 text-gray-50">
           <div>
@@ -102,6 +104,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+  }
     </div>
   );
 };

@@ -9,8 +9,8 @@ const ShapePieChart = ({data, title}) => {
   return (
     <>
     <div>
-    <Accordion title={title} icons={<RiBarChart2Line className="ml-3"/>} content={data.map((item) => ( 
-      <div>{item.name} = {item.value}</div>
+    <Accordion title={title} icons={<RiBarChart2Line className="ml-3"/>} content={data.map((item, index) => ( 
+      <div key={index}>{item.name} = {item.value}</div>
     ))}/>
     <PieChart width={400} height={400} className="m-auto">
     <Brush dataKey="name" height={30} stroke="#8884d8" />

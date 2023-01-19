@@ -1,7 +1,8 @@
 import React from "react";
 import DataTable, { defaultThemes } from "react-data-table-component";
+import {BiSearchAlt} from 'react-icons/bi';
 
-const Table = ({columns, data, searchValue, handleSearch, placeholder, addComponent, statusDropdown}) => {
+const Table = ({columns, data, searchValue, handleSearch, handleClick, placeholder, addComponent, statusDropdown, type}) => {
 
   const customStyles = {
     header: {
@@ -51,19 +52,22 @@ const Table = ({columns, data, searchValue, handleSearch, placeholder, addCompon
         subHeader
         subHeaderComponent={
           <div className="relative flex flex-col md:flex-row items-start md:items-center md:justify-between py-2 md:py-3 w-full">
-            <div className="mb-3 md:mb-0">
+            <div className="mb-3 md:mb-0 flex items-center">
               <label className="mr-1">
                 Pencarian : 
               </label>
               <input 
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                className=" appearance-none border rounded-l-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                 type="text" 
                 placeholder={placeholder}
                 value={searchValue}
                 onChange={handleSearch}
                 />
+                {type === 'pasbandara' && (
+                <button className="p-2 bg-blue-600 text-gray-50 rounded-r-lg border-t border-blue-600 hover:border-blue-800 hover:bg-blue-800" onClick={handleClick}><BiSearchAlt size={15} className="text-center"/></button>
+                )}
             </div>
-            <div className="md:absolute left-56 z-10">
+            <div className="md:absolute left-64 z-10">
               {statusDropdown}
             </div>
             <div>

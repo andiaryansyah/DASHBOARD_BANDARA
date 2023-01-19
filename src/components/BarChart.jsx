@@ -14,7 +14,7 @@ import {
 
 const BarChart = ({ data, setAngle, anchor }) => {
   return (
-    <ResponsiveContainer width="90%" height="90%" aspect={1.5}>
+    <ResponsiveContainer width="90%" height="90%" aspect={1.7}>
       <CBar
         width={0}
         height={500}

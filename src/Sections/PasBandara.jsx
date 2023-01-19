@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Select from 'react-select'
 import Modal from "../components/Modal";
 import Table from "../components/Table";
-import { getData, setFilter, setStatus } from "../store/actions/pasbandaraAction";
+import { getData, setFilter, setLoading, setStatus } from "../store/actions/pasbandaraAction";
 import {FiSend} from 'react-icons/fi';
+import Loading from "../components/Loading";
 
 const PasBandara = () => {
   const dispatch = useDispatch()
-  const {data, filter, status} = useSelector((state) => state.pasbandara);
+  const {data, filter, status, loading} = useSelector((state) => state.pasbandara);
 
   const columns = useMemo(
     () => [
@@ -125,6 +126,7 @@ const PasBandara = () => {
                         </div>
 
   useEffect(() => {
+   dispatch(setLoading(true))
    dispatch(getData({filter, status}))
 
    // eslint-disable-next-line
@@ -141,22 +143,39 @@ const PasBandara = () => {
     dispatch(getData({filter, status}))
 
   // eslint-disable-next-line
-  },[filter, status])
+  },[status])
 
   useEffect(() => {
 
   },[data])
 
+  const handleClick =  () => {
+     dispatch(getData({filter, status}))
+  }
+
+  const onChangeSearch = (e) => {
+    if (e.target.value === '' ){
+      setSearch(e.target.value)
+     dispatch(getData({filter: '', status}))
+    } else {
+      setSearch(e.target.value)
+    }
+  }
+
   return (
     <div className="text-xs p-5 md:p-9">
+      {loading ? <div><Loading /></div> : 
         <Table 
           columns={columns}
           data={datas}
           searchValue={search}
-          handleSearch={(e) => setSearch(e.target.value)}
+          handleSearch={onChangeSearch}
           statusDropdown={statusDropdown}
           placeholder={"Pencarian Email/No.HP"}
+          handleClick={handleClick}
+          type="pasbandara"
         />
+  }
     </div>
   );
 };
