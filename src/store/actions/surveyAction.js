@@ -21,6 +21,7 @@ export const setDataSurvey = (payload) => {
   export function getDataSurvey() {
     return async (dispatch, getState) => {
       try {
+        console.log("MASUKKKKKKKKKKKKKKKKKK");
         dispatch(setLoading(true));
         await axios 
         ({

@@ -61,12 +61,11 @@ const COLORS_PETUGAS= ['#0088FE', '#FB2B2B'];
     dispatch(getDataSurvey())
   // eslint-disable-next-line
   }, []);
-  if (loading) {
-    return <Loading />
-  } else {
+  console.log(loading, ">>>>>?????????????");
     return (
       <div className="p-10">
         { 
+        loading ? <Loading /> :
         data &&
           <>
         <Accordion
@@ -87,7 +86,7 @@ const COLORS_PETUGAS= ['#0088FE', '#FB2B2B'];
           bgColor="bg-gray-100"
           icons={<RiBarChart2Fill className="ml-3"/>}
         />
-        <Accordion
+        {/* <Accordion
           title="PROFIL RESPONDEN"
           content={
             <>
@@ -120,12 +119,11 @@ const COLORS_PETUGAS= ['#0088FE', '#FB2B2B'];
           }
           bgColor="bg-gray-100"
           icons={<RiBarChart2Fill className="ml-3"/>}
-        />
+        /> */}
         </>
       }
       </div>
     );
-  }
 };
 
 export default Survey;

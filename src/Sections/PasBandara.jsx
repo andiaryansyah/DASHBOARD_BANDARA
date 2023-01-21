@@ -145,6 +145,7 @@ const PasBandara = () => {
                         </div>
 
   useEffect(() => {
+    dispatch(setLoading(true))
    dispatch(getData({filter, status}))
 
    // eslint-disable-next-line
