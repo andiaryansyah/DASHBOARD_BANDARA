@@ -53,14 +53,14 @@ const Survey = () => {
             <div className="py-7 px-10 bg-gray-100 mb-5 flex justify-around">
               <div className="p-5 text-center  w-5/12">
                 <p className="font-semibold text-gray-500 text-base xl:text-lg">SURVEI KEPUASAN MASYARAKAT DAN PERSEPSI ANTI KORUPSI</p>
-                <p className="font-semibold text-gray-600 text-lg xl:text-2xl">KEMENTERIAN PERHUBUNGAN <br/> UPBU KELAS I SIS AL JUFRI</p>
+                <p className="font-semibold text-gray-600 text-lg xl:text-2xl">KEMENTERIAN PERHUBUNGAN <br/> UPBU SULTAN BANTILAN TOLITOLI</p>
               </div>
               <div className="grid grid-cols-2 items-center gap-x-4 gap-y-5 text-center">
                 <div className="py-6 xl:py-7 px-10 bg-sky-500 font-semibold text-gray-100 rounded-lg  text-center">
                   <p className="text-xs xl:text-lg">KUALITAS <br/>PELAYANAN</p>
                   <br className="xl:hidden"/>
                   <p className="text-xs xl:text-lg mb-1">(IKM)</p>
-                  <p className="text-xs xl:text-3xl">15.95/17.50</p>
+                  <p className="text-xs xl:text-3xl">{dataChart.kualitas}/5.00</p>
                 </div>
                 <div className="py-7 px-10 bg-sky-500 font-semibold text-gray-100 rounded-lg  text-center">
                   <p className="text-xs xl:text-lg">
@@ -68,11 +68,11 @@ const Survey = () => {
                     <br /> PELAYANAN
                   </p>
                   <p className="text-xs xl:text-lg mb-1">(IPK)</p>
-                  <p className="text-xs xl:text-3xl">15.95/17.50</p>
+                  <p className="text-xs xl:text-3xl">{dataChart.penyimpangan}/5.00</p>
                 </div>
                 <div className="py-10 px-8 bg-cyan-500 font-semibold text-gray-100 rounded-lg  text-right">
                   <p className="text-base xl:text-lg">RESPONDEN</p>
-                  <p className="text-lg xl:text-3xl">36</p>
+                  <p className="text-lg xl:text-3xl">{dataChart.total}</p>
                 </div>
               </div>
             </div>
